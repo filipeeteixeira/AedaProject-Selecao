@@ -1,0 +1,104 @@
+PORxLUX
+1
+Lisboa
+Portugal
+Estadio de Alvalade
+Soares Dias;Pedro Proenca
+Jogador Selecao;6;0;23;76;A;93
+Jogador Selecao;3;0;30;80; ;70
+Jogador Selecao;9;1;28;10; ;23
+Jogador Selecao;4;1;21;59;A;93
+Jogador Selecao;14;0;17;75; ;93
+Jogador Selecao;8;0;24;65; ;93
+Jogador;5
+Jogador;2
+Jogador;4
+Jogador;9
+::::::::::::
+UKRxPOR
+1
+Lille
+Franca
+Lille Metropole
+Bruno Paixao;Carlos Ramos
+Jogador Selecao;11;0;43;60;AA;90
+Jogador Selecao;6;1;50;80;V;90
+Jogador Selecao;10;0;51;50; ;90
+Jogador Selecao;16;1;59;61; ;90
+Jogador Selecao;1;0;18;9; ;36
+Jogador Selecao;7;2;48;50; ;54
+Jogador;17
+Jogador;11
+Jogador;4
+Jogador;2
+Jogador;9
+::::::::::::
+PORxSRB
+1
+Porto
+Portugal
+Estadio do Dragao
+Soares Dias;Pedro Proenca
+Jogador Selecao;7;2;48;50; ;54
+Jogador Selecao;8;1;43;68;V;87
+Jogador Selecao;10;0;57;48; ;90
+Jogador Selecao;16;0;59;61; ;90
+Jogador Selecao;1;0;10;8; ;90
+Jogador Selecao;14;0;47;70; ;36
+Jogador;5
+Jogador;9
+Jogador;17
+Jogador;4
+Jogador;2
+::::::::::::
+MEXxPOR
+1
+Cidade do Mexico
+Mexico
+Azteca
+Soares Dias;Pedro Proenca
+Jogador Selecao;21;0;15;28; ;90
+Jogador Selecao;14;0;41;62;V;90
+Jogador Selecao;10;0;58;40; ;90
+Jogador Selecao;11;0;50;57; ;90
+Jogador Selecao;1;0;10;8; ;90
+Jogador;2
+Jogador;11
+Jogador;17
+Jogador;4
+Jogador;5
+::::::::::::
+PORxEGI
+2
+Lisboa
+Portugal
+Estadio da Luz
+Bruno Paixao;Carlos Ramos
+Jogador Selecao;1;2;43;60;AA;67
+Jogador Selecao;6;1;50;80;V;76
+Jogador Selecao;18;0;51;76; ;90
+Jogador Selecao;8;0;13;40; ;90
+Jogador Selecao;14;0;23;69; ;90
+Jogador;9
+Jogador;11
+Jogador;2
+Jogador;5
+Jogador;4
+::::::::::::
+HOLxPOR
+2
+Roterda
+Holanda
+Estadio de Kuip
+Lucilio Batista;Carlos Ramos
+Jogador Selecao;6;0;43;60; ;90
+Jogador Selecao;1;1;50;80; ;76
+Jogador Selecao;18;0;51;76; ;90
+Jogador Selecao;23;1;34;89;A;90
+Jogador Selecao;10;0;56;65; ;90
+Jogador;9
+Jogador;11
+Jogador;17
+Jogador;2
+Jogador;5
+::::::::::::

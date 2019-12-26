@@ -1,0 +1,16 @@
+1
+Qualificacao Europa
+PORxLUX;UKRxPOR;PORxSRB;MEXxPOR
+11;3;9;4;14;8;6;10;16;1;7;21
+Fernando Santos;Ilidio Vale
+7/10/2019
+15/10/2019
+::::::::::::
+2
+Preparacao Mundial
+PORxEGI;HOLxPOR
+1;6;18;8;14;23;10
+Fernando Santos;Ilidio Vale;Ricardo Santos
+16/6/2018
+24/6/2018
+::::::::::::

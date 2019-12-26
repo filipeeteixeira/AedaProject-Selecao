@@ -1,0 +1,29 @@
+Jogador Selecao;Rui Patricio;Guarda-Redes;Wolves;1;86;1.89;15/02/1988;950
+Jogador Selecao;Ruben Neves;Medio;Wolves;18;74;1.79;13/03/1997;650
+Jogador Selecao;Pepe;Defesa;FC Porto;3;76;1.89;26/02/1983;900
+Jogador Selecao;Jose Fonte;Defesa;Lille;6;75;1.74;22/12/1983;670
+Jogador Selecao;Cristiano Ronaldo;Avancado;Juventus;7;74;1.89;05/02/1985;1000
+Jogador Selecao;Bernardo Silva;Avancado;Manchester City;11;76;1.71;10/08/1994;950
+Jogador Selecao;Andre Silva;Avancado;Frankfurt;9;80;1.84;06/06/1995;850
+Jogador Selecao;Bruno Fernandes;Medio;Sporting;16;78;1.80;08/09/1994;930
+Jogador Selecao;Joao Felix;Medio;Atletico Madrid;4;76;1.76;10/06/1999;1100
+Jogador Selecao;Goncalo Guedes;Avancado;Valencia;17;80;1.79;29/06/1996;790
+Jogador Selecao;Joao Moutinho;Medio;Wolves;8;64;1.70;08/09/1986;890
+Jogador Selecao;William Carvalho;Avancado;Betis;14;82;1.85;07/04/1992;800
+Jogador Selecao;Joao Mario;Medio;Lokomotiv;10;73;1.79;109/01/1993;840
+Jogador Selecao;Jose Sa;Guarda-Redes;Olympiakos;21;80;1.92;10/01/1993;430
+Jogador Selecao;Danilo Pereira;Medio;FC Porto;18;79;1.81;11/07/1980;600
+Jogador Selecao;Pizzi;Medio;Benfica;23;100;1.72;06/11/1989;700
+Jogador;Felipe Augusto;Defesa;Atletico Madrid;5
+Jogador;Iker Casillas;Guarda-Redes;Real Madrid;2
+Jogador;Oliver Torres;Medio;Sevilha;4
+Jogador;Bas Dost;Avancado;Sporting;9
+Jogador;Messi;Avancado;Barcelona;11
+Jogador;Lewandowski Robert;Avancado;Bayern;10
+Jogador;Sergio Busquets;Medio;Barcelona;5
+Jogador;Cervi Franco;Medio;Benfica;17
+Staff;Fernando Santos;Selecionador Nacional;10/10/1954;800
+Staff;Ilidio Vale;Treinador Nacional;13/12/1957;300
+Staff;Ricardo Santos;Treinador Assistente;01/09/1981;400
+Staff;Jorge Rosario;Observador;18/07/1961;350
+Staff;Joao Costa;Treinador Assistente;23/06/1973;400
