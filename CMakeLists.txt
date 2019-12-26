@@ -10,8 +10,6 @@ add_executable(codigo
         Convocatoria.h
         Date.cpp
         Date.h
-        Handler.cpp
-        Handler.h
         Jogador.cpp
         Jogador.h
         Jogo.cpp
