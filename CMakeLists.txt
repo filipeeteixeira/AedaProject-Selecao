@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD 14)
 include_directories(.)
 
 add_executable(codigo
+        BST.h
         Convocatoria.cpp
         Convocatoria.h
         Date.cpp
