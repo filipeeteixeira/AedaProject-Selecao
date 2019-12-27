@@ -8,6 +8,8 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include "Date.h"
+#include <vector>
 
 using namespace std;
 
@@ -62,6 +64,17 @@ public:
 /** @brief * Prints staff in a friendly way
     *@param stf is the pointer to the staff we want to print
 */
+};
+
+class Selecionador :public Staff{
+    string nome;
+    unsigned int titulosGanhos;
+    vector<tuple<string,Date>> selecoes;
+public:
+    Selecionador(string nm, string dNas, string fnc, int s, unsigned int titulosGanhos, vector<tuple<string,Date>> sel);
+    void getInfo();
+    friend ostream& operator<<(ostream& out, Selecionador* sl1);
+    bool operator<(Selecionador * sl1);
 };
 
 class StaffInexistente{

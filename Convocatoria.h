@@ -16,6 +16,7 @@ class Convocatoria {
 	vector<Jogo*> campeonato;
 	vector<JogadorSelecao*> jogadoresConvocados;
 	vector<Staff*> staffConvocado;
+	vector<Selecionador*> SelecionadoresConvocados;
 	string tipo_campeonato, id;
 	Date data_inicio, data_fim;
 	map<string,string> lesoes;

@@ -5,6 +5,7 @@
 #include "Date.h"
 #include "Convocatoria.h"
 #include "Jogo.h"
+//#include "BST.h"
 
 class Selecao {
 	vector<Convocatoria*> campeonatos; //vetor com as diferentes convocatorias da sele�ao
@@ -12,6 +13,7 @@ class Selecao {
 	vector<Jogador*> OutrosJogadores; //vetor com jogadores de equipas adversarias com que a sele�ao ja jogou
 	vector<Jogo*>TodosJogos;
 	vector<Staff*> EquipaTecnica;
+	//BST<Selecionador>TodosSelecionadores;
 
 public:
     /** @brief * National Team empty constructor

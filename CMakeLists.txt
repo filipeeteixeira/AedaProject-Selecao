@@ -23,4 +23,4 @@ add_executable(codigo
         Staff.cpp
         Staff.h
         Utils.cpp
-        Utils.h Selecionador.h Selecionador.cpp)
+        Utils.h)

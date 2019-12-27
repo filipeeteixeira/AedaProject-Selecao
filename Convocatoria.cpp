@@ -7,8 +7,7 @@ Convocatoria::Convocatoria(string tc, Date di, Date df){
     this->data_inicio=di;
     this->data_fim=df;
 }
-//blablabladsdsdsd
-//asasasasasasas
+
 void Convocatoria::addJogo(Jogo *j) {
     campeonato.push_back(j);
 }
