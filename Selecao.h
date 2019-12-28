@@ -5,6 +5,7 @@
 #include "Date.h"
 #include "Convocatoria.h"
 #include "Jogo.h"
+#include <tuple>
 //#include "BST.h"
 
 class Selecao {

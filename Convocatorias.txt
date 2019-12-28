@@ -11,6 +11,6 @@ Preparacao Mundial
 PORxEGI;HOLxPOR
 1;6;18;8;14;23;10
 Fernando Santos;Ilidio Vale;Ricardo Santos
-16/6/2018
-24/6/2018
+16/06/2018
+24/06/2018
 ::::::::::::

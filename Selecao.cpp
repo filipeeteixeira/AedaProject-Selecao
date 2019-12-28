@@ -16,6 +16,8 @@ int Selecao::ReadFile(string PersonsFile, string JogosFile, string Convocatorias
 	}
 
 	string type, name, posicao, clube, numero, peso, altura, dataN, passe, salario, funcao;
+	string nTitulos, local, dataInicioC,tmp;
+	vector<tuple<string,Date>>titulos;
 
 	while (!infile1.eof()) {
 		getline(infile1, type, ';');
@@ -45,10 +47,29 @@ int Selecao::ReadFile(string PersonsFile, string JogosFile, string Convocatorias
 			getline(infile1, name, ';');
 			getline(infile1, funcao, ';');
 			getline(infile1, dataN, ';');
-			getline(infile1, salario);
-
-			Staff* new_staff = new Staff(name, dataN, funcao, stoi(salario));
-			EquipaTecnica.push_back(new_staff);
+            if (funcao ==  "Selecionador Nacional") {
+                getline(infile1, salario, '(');
+                getline(infile1, nTitulos, ')');
+                for (size_t i = 1; i <= stoi(nTitulos); i++) {
+                    getline(infile1, local, ';');
+                    if (i == stoi(nTitulos)) {
+                        getline(infile1, dataInicioC);
+                        titulos.push_back(tuple<string, Date>(local, Date(dataInicioC)));
+                    } else {
+                        getline(infile1, dataInicioC, ';');
+                        titulos.push_back(tuple<string, Date>(local, Date(dataInicioC)));
+                    }
+                }
+                if (stoi(nTitulos)==0)
+                    getline(infile1,tmp); //remover o \n depois de ler o numero de titulos
+                Selecionador new_selecionador = Selecionador(name, dataN, funcao, stoi(salario), stoi(nTitulos),
+                                                             titulos);
+            }
+            else {
+                getline(infile1, salario);
+                Staff *new_staff = new Staff(name, dataN, funcao, stoi(salario));
+                EquipaTecnica.push_back(new_staff);
+            }
 		}
 	}
 	infile1.close();
