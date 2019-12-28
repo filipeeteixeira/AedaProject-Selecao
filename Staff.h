@@ -10,21 +10,25 @@
 #include <string>
 #include "Date.h"
 #include <vector>
+#include <unordered_set>
 
 using namespace std;
 
+
 class Staff {
+
 private:
     int salario;
-    string nome, funcao, dNascimento;
+    string nome, funcao, dNascimento,contrato;
 public:
-	Staff(string nm, string dNas, string fnc, int s);
+	Staff(string nm, string dNas, string fnc, int s,string cntr);
     /** @brief * Constructs object Staff
   *
   *@param nm is the name
   *@param dNas is the birth Date
   *@param fnc is the function
   *@param s is the salary
+  *@param cntr indicates if staff is hired or was hired
   */
 
     string getNome() const {return nome;}
@@ -47,6 +51,7 @@ public:
 /** @brief * Gets staff salary
     *@return this->salario
 */
+    string getContrato(){return this->contrato;  }
 
     void setFuncao(string f){this->funcao=f;}
 
@@ -65,6 +70,7 @@ public:
     *@param stf is the pointer to the staff we want to print
 */
 };
+
 
 class Selecionador :public Staff{
     int titulosGanhos;

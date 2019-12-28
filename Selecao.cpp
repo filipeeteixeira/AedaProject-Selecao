@@ -1,7 +1,8 @@
 #include "Selecao.h"
 #include <fstream>
-
-Selecao::Selecao():TodosSelecionadores(Selecionador("","","",0,0,{tuple<string,Date>("",Date("0/0/0"))}))
+//novo parametro string nos staff
+//fazer funçao que determina se um membro da staff e atual ou antigo e dps adiciona-lo a tabela
+Selecao::Selecao()
 {
 }
 
@@ -15,7 +16,7 @@ int Selecao::ReadFile(string PersonsFile, string JogosFile, string Convocatorias
 		return 1;
 	}
 
-	string type, name, posicao, clube, numero, peso, altura, dataN, passe, salario, funcao;
+	string type, name, posicao, clube, numero, peso, altura, dataN, passe, salario, funcao,contracto;
 	string nTitulos, local, dataInicioC,tmp;
 	vector<tuple<string,Date>>titulos;
 
@@ -47,6 +48,7 @@ int Selecao::ReadFile(string PersonsFile, string JogosFile, string Convocatorias
 			getline(infile1, name, ';');
 			getline(infile1, funcao, ';');
 			getline(infile1, dataN, ';');
+            getline(infile1, contracto, ';');
             if (funcao ==  "Selecionador Nacional") {
                 getline(infile1, salario, '(');
                 getline(infile1, nTitulos, ')');
@@ -64,11 +66,11 @@ int Selecao::ReadFile(string PersonsFile, string JogosFile, string Convocatorias
                     getline(infile1,tmp); //remover o \n depois de ler o numero de titulos
                 Selecionador new_selecionador = Selecionador(name, dataN, funcao, stoi(salario), stoi(nTitulos),
                                                              titulos);
-                TodosSelecionadores.insert(new_selecionador);
+                //TodosSelecionadores.insert(new_selecionador);
             }
             else {
                 getline(infile1, salario);
-                Staff *new_staff = new Staff(name, dataN, funcao, stoi(salario));
+                Staff *new_staff = new Staff(name, dataN, funcao, stoi(salario),contracto);
                 EquipaTecnica.push_back(new_staff);
             }
 		}
@@ -306,7 +308,7 @@ int Selecao::WriteFile(string PersonsFile, string JogosFile, string Convocatoria
 
 	for (auto& x : EquipaTecnica) {
 		outfile1 << "Staff" << ";" << x->getNome() << ";" << x->getFuncao() << ";"
-			<< x->getDNascimento() << ";" << x->getSalario() << endl;
+			<< x->getDNascimento() << ";" << x->getSalario() <<";"<<x->getContrato()<< endl;
 
 	}
 	outfile1.close();
@@ -680,13 +682,5 @@ void Selecao::addtoConvocatoria(string id_conv, string id_player){
 	}
 	if (!found_convocatoria)
 		throw ConvocatoriaInexistente(id_conv);
-}
-
-void Selecao::showAllSelecionadores() const {
-    BSTItrIn<Selecionador>it(TodosSelecionadores);
-    while(!it.isAtEnd()){
-        it.retrieve().getInfo();
-
-    }
 }
 

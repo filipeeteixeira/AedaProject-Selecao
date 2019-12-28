@@ -2,11 +2,12 @@
 #include "Staff.h"
 
 
-Staff::Staff(string nm, string dNas, string fnc, int s){
+Staff::Staff(string nm, string dNas, string fnc, int s,string cntr){
     this->nome=nm;
     this->funcao=fnc;
     this->dNascimento=dNas;
     this->salario=s;
+    this->contrato=cntr;
 }
 
 ostream& operator<<(ostream& out, Staff* stf)
@@ -16,7 +17,7 @@ ostream& operator<<(ostream& out, Staff* stf)
 	return out;
 }
 
-Selecionador::Selecionador(string nm, string dNas, string fnc, int s, int tG, vector<tuple<string, Date>> sel):Staff(nm,dNas,fnc,s) {
+Selecionador::Selecionador(string nm, string dNas, string fnc, int s, int tG, vector<tuple<string, Date>> sel):Staff(nm,dNas,fnc,s,cntr) {
     this->titulosGanhos=tG;
     this->selecoes=sel;
 }
