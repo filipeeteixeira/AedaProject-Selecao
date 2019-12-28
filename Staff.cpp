@@ -34,9 +34,9 @@ ostream &operator<<(ostream &out, Selecionador *sl1) {
     return out;
 }
 
-bool Selecionador::operator<(Selecionador *sl1) {
-    if (this->titulosGanhos==sl1->titulosGanhos){
-        return this->getNome() < sl1->getNome();
+bool Selecionador::operator<(const Selecionador &sl1) const {
+    if (this->titulosGanhos==sl1.titulosGanhos){
+        return getNome() < sl1.getNome();
     }
-    return this->titulosGanhos<sl1->titulosGanhos;
+    return this->titulosGanhos<sl1.titulosGanhos;
 }

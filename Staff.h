@@ -27,18 +27,18 @@ public:
   *@param s is the salary
   */
 
-    string getNome(){return nome;}
+    string getNome() const {return nome;}
 /** @brief * Gets staff name
   *@return this->nome
 */
 
-	string getDNascimento() { return dNascimento; }
+	string getDNascimento() const { return dNascimento; }
 /** @brief * Gets staff birth date
     *@return this->dNascimento
 */
 
 
-	string getFuncao() { return funcao; }
+	string getFuncao() const { return funcao; }
 /** @brief * Gets staff function
     *@return this->funcao
 */
@@ -73,7 +73,7 @@ public:
     Selecionador(string nm, string dNas, string fnc, int s, int titulosGanhos, vector<tuple<string,Date>> sel);
     void getInfo();
     friend ostream& operator<<(ostream& out, Selecionador* sl1);
-    bool operator<(Selecionador * sl1);
+    bool operator<(const Selecionador &sl1) const;
 };
 
 class StaffInexistente{
