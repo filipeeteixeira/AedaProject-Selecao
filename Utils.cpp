@@ -28,17 +28,19 @@ JogadorSelecao * AddPlayerProcedure() {
 
 Staff * AddStaffProcedure(){
     int salario;
-    string nome, funcao, dNascimento;
+    string nome, funcao, dNascimento,contrato;
     cout << "Name: ";
     getline(cin, nome);
-    cout << "Data Namento: ";
+    cout << "Data Nascimento: ";
     getline(cin, dNascimento);
     cout << "Funcao: ";
     getline(cin,funcao);
     cout << "Salario: ";
     cin >> salario;
+    cout<<"Contrato(atual ou antigo):";
+    cin>>contrato;
 
-    Staff * new_staff = new Staff(nome,dNascimento, funcao,salario);
+    Staff * new_staff = new Staff(nome,dNascimento, funcao,salario,contrato);
 
     return new_staff;
 }
