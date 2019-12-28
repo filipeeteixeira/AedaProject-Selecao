@@ -64,6 +64,7 @@ int Selecao::ReadFile(string PersonsFile, string JogosFile, string Convocatorias
                     getline(infile1,tmp); //remover o \n depois de ler o numero de titulos
                 Selecionador new_selecionador = Selecionador(name, dataN, funcao, stoi(salario), stoi(nTitulos),
                                                              titulos);
+                //TodosSelecionadores.insert(new_selecionador);
             }
             else {
                 getline(infile1, salario);
