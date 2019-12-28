@@ -91,6 +91,10 @@ public:
 */
 	void showAllStaff()const;
 
+
+	void showAllSelecionadores()const;
+
+
     /** @brief * Shows all national costs
 */
 	void showAllCosts() const;

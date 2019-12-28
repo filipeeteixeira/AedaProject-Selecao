@@ -682,3 +682,11 @@ void Selecao::addtoConvocatoria(string id_conv, string id_player){
 		throw ConvocatoriaInexistente(id_conv);
 }
 
+void Selecao::showAllSelecionadores() const {
+    BSTItrIn<Selecionador>it(TodosSelecionadores);
+    while(!it.isAtEnd()){
+        it.retrieve().getInfo();
+
+    }
+}
+
