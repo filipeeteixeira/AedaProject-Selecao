@@ -1,5 +1,7 @@
 #include "Menus.h"
 
+
+
 void BegginingMenu(Selecao &s) {
 	while (1) {
 		cout << endl;
@@ -339,7 +341,7 @@ void AlterarStaffSubMenu(Selecao& s) {
 				string nome = AskStaffProcedure();
 				try {
 					cout << "Insira a funcao: "; cin >> funcao;
-					s.GetStaff(nome)->setFuncao(funcao);
+					s.GetStaff(nome).setFuncao(funcao);
 					break;
 				}
 				catch (StaffInexistente & Si) {
@@ -355,7 +357,7 @@ void AlterarStaffSubMenu(Selecao& s) {
 				string nome = AskStaffProcedure();
 				try {
 					cout << "Insira o salario: "; cin >> salario;
-					s.GetStaff(nome)->setSalario(salario);
+					s.GetStaff(nome).setSalario(salario);
 					break;
 				}
 				catch (StaffInexistente & Si) {
@@ -366,14 +368,20 @@ void AlterarStaffSubMenu(Selecao& s) {
         }
     }
 }
-
+string data_atual;
+Date dataatual=Date(data_atual);
 void StaffSubMenu(Selecao &s) {
+    cout<<"Digite a data atual na forma dd/mm/yyyy"<<endl;
+    cin>>data_atual;
+
     cout << "Enter your choice and press return: " << endl;
     cout << " [1] Adicionar Staff a Selecao\n";
     cout << " [2] Remover Staff da Selecao\n"; 
     cout << " [3] Alterar Staff da Selecao\n";  
-    cout << " [4] Ver Staff da Selecao\n";
+    cout << " [4] Ver Staff total\n";
     cout << " [5] Ver Selecionadores\n";
+    cout <<  "[6] Ver Staff atual\n";
+    cout <<  "[7] Ver staff antigo\n";
     cout << endl << " [0] EXIT Menu.\n" << endl;
     switch (askOption()) {
         case 0:
@@ -413,6 +421,15 @@ void StaffSubMenu(Selecao &s) {
         case 5:
         {
             s.showAllSelecionadores();
+            break;
+        }
+        case 6:
+        {
+
+            break;
+        }
+        case 7:
+        {
             break;
         }
     }

@@ -10,10 +10,10 @@ Staff::Staff(string nm, string dNas, string fnc, int s,string cntr){
     this->contrato=cntr;
 }
 
-ostream& operator<<(ostream& out, Staff* stf)
+ostream& operator<<(ostream& out, Staff& stf)
 {
-	out << "Nome :" + stf->getNome() << endl << "Data Nascimento: " << stf->getDNascimento() << endl << "Funcao: "
-	<< stf->getFuncao() << endl << "Salario: " << to_string(stf->getSalario()) << endl << "Contrato: " << stf->getContrato() << endl;
+	out << "Nome :" + stf.getNome() << endl << "Data Nascimento: " << stf.getDNascimento() << endl << "Funcao: "
+	<< stf.getFuncao() << endl << "Salario: " << to_string(stf.getSalario()) << endl << "Contrato: " << stf.getContrato() << endl;
 	return out;
 }
 

@@ -24,6 +24,6 @@ Jogador;Sergio Busquets;Medio;Barcelona;5
 Jogador;Cervi Franco;Medio;Benfica;17
 Staff;Fernando Santos;Selecionador Nacional;10/10/1954;800;antigo(1)Portugal;10/07/2019
 Staff;Ilidio Vale;Selecionador Nacional;13/12/1957;300;antigo(0)
-Staff;Ricardo Santos;Treinador Assistente;01/09/1981;400;antigo
+Staff;Ricardo Santos;Treinador Assistente;01/09/1981;410;antigo
 Staff;Jorge Rosario;Observador;18/07/1961;350;antigo
 Staff;Joao Costa;Treinador Assistente;23/06/1973;400;antigo

@@ -13,6 +13,7 @@
 using namespace std;
 
 class Convocatoria {
+
 	vector<Jogo*> campeonato;
 	vector<JogadorSelecao*> jogadoresConvocados;
 	vector<Staff*> staffConvocado;

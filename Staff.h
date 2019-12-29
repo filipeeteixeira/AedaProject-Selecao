@@ -51,7 +51,7 @@ public:
 /** @brief * Gets staff salary
     *@return this->salario
 */
-    string getContrato(){return this->contrato;  }
+    string getContrato() const{return this->contrato;  }
 
     void setFuncao(string f){this->funcao=f;}
 

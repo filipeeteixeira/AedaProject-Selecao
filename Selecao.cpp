@@ -1,5 +1,6 @@
 #include "Selecao.h"
 #include <fstream>
+#include <unordered_set>
 
 Selecao::Selecao():TodosSelecionadores(new Selecionador("","","",0,"",0,{tuple<string,Date>("",Date("0/0/0"))}))
 {
@@ -71,7 +72,8 @@ int Selecao::ReadFile(string PersonsFile, string JogosFile, string Convocatorias
             else {
                 getline(infile1, contracto);
                 Staff *new_staff = new Staff(name, dataN, funcao, stoi(salario),contracto);
-                EquipaTecnica.push_back(new_staff);
+                stafftotal.insert(*new_staff);
+
             }
 		}
 	}
@@ -272,11 +274,11 @@ int Selecao::ReadFile(string PersonsFile, string JogosFile, string Convocatorias
                     stringstream ss;
                     ss << line;
                     string NomeStaff;
-                    Staff* staff_conv;
+
                     while (getline(ss, NomeStaff, ';')) {
                         try {
-                            staff_conv = GetStaff(NomeStaff); //procura na selecao o staff desta convocatoria
-                            new_convocatoria->addStaffConvocado(staff_conv); //cria o vetor de staff convocados da convocatoria
+                           auto staff_conv = GetStaff(NomeStaff); //procura na selecao o staff desta convocatoria
+                            new_convocatoria->addStaffConvocado(&staff_conv); //cria o vetor de staff convocados da convocatoria
                         }
                         catch (StaffInexistente(&Si)) {
                             continue;
@@ -323,9 +325,9 @@ int Selecao::WriteFile(string PersonsFile, string JogosFile, string Convocatoria
 			<< ";" << x->getClube() << ";" << x->getNumero() << endl;
 	}
 
-	for (auto& x : EquipaTecnica) {
-		outfile1 << "Staff" << ";" << x->getNome() << ";" << x->getFuncao() << ";"
-			<< x->getDNascimento() << ";" << x->getSalario() <<";"<<x->getContrato()<< endl;
+	for (auto& x : stafftotal) {
+		outfile1 << "Staff" << ";" << x.getNome() << ";" << x.getFuncao() << ";"
+			<< x.getDNascimento() << ";" << x.getSalario() <<";"<<x.getContrato()<< endl;
 
 	}
 	outfile1.close();
@@ -486,13 +488,17 @@ void Selecao::showPlayer(string numero) const{
 }
 
 void Selecao::showAllStaff() const {
-	for (auto& x : EquipaTecnica) {
-		cout << x << endl;
-	}
-	cout << endl;
+    auto it = stafftotal.begin();
+    while (it != stafftotal.end()) {
+        cout << &it;
+        it++;
+    }
 }
 
-void Selecao::showAllCosts() const {
+
+
+
+    void Selecao::showAllCosts() const {
 	double playerCosts = 0, staffCosts = 0, totalCosts = 0;
 	int totalDays = 0;
 	for (auto& x : campeonatos) {
@@ -621,10 +627,9 @@ void Selecao::RemovePlayer(string numero){
 }
 
 void Selecao::RemoveStaff(string nome){
-    typename vector<Staff*> ::iterator x = EquipaTecnica.begin();
-    for (; x != EquipaTecnica.end(); x++) {
-        if ((*x)->getNome() == nome) {
-            EquipaTecnica.erase(x);
+    for (auto itr=stafftotal.begin(); itr != stafftotal.end(); itr++) {
+        if ((*itr).getNome() == nome) {
+            stafftotal.erase(itr);
             return;
         }
     }
@@ -642,20 +647,20 @@ vector<JogadorSelecao*> Selecao::getAllPlayers() const
 	return TodosJogadores;
 }
 
-Staff* Selecao::GetStaff(string nome)
+Staff Selecao::GetStaff(string nome)
 {
-    typename vector<Staff*> ::iterator x = EquipaTecnica.begin();
-    for (; x != EquipaTecnica.end(); x++) {
-        if ((*x)->getNome() == (nome)) {
-            return (*x);
+
+    for (auto& x:stafftotal) {
+        if (x.getNome() == nome) {
+            return x;
         }
     }
 
     throw StaffInexistente(nome);
 }
 
-void Selecao::AddStaff(Staff *s) {
-    EquipaTecnica.push_back(s);
+void Selecao::AddStaff(Staff* s) {
+    stafftotal.insert(*s);
 }
 
 void Selecao::addLesaoConvocatoria(string id_conv,string id_player,string day){
@@ -720,5 +725,5 @@ Selecionador *Selecao::GetSelecionador(string nome) {
         it.advance();
     }
     throw StaffInexistente(nome);
-}
+   }
 

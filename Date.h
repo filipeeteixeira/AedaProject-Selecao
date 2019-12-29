@@ -8,13 +8,14 @@
 
 using namespace std;
 
-class Date{
- private:
-  unsigned short day;
-  unsigned short month;
-  unsigned year;
+class Date {
+private:
+    unsigned short day;
+    unsigned short month;
+    unsigned year;
+public:
 
- public:
+
     /**
 * @brief Constructor of class Date with value of day,month and year set to 0
 *

@@ -8,14 +8,34 @@
 #include "Jogo.h"
 #include <tuple>
 #include "BST.h"
+#include <unordered_set>
+struct staffhash
+{
+    int operator() (const Staff & staff1) const
+    {
+        return(staff1.getNome().size()+ staff1.getSalario()+staff1.getFuncao().size());
 
+
+    }
+};
+struct staffeq{
+    bool operator() (const Staff & staff1, const Staff & staff2) const
+    { return staff1.getNome()==staff2.getNome();
+
+    }
+};
+
+
+
+typedef unordered_set<Staff,staffhash,staffeq> tabHstaff;
 class Selecao {
+    tabHstaff stafftotal;//possui a info do vetor equipa tecnica e do vetor staff convocado
 	vector<Convocatoria*> campeonatos; //vetor com as diferentes convocatorias da sele�ao
 	vector<JogadorSelecao*> TodosJogadores; //vetor com todos os jogadores da sele��o
 	vector<Jogador*> OutrosJogadores; //vetor com jogadores de equipas adversarias com que a sele�ao ja jogou
 	vector<Jogo*>TodosJogos;
-	vector<Staff*> EquipaTecnica;
-	BST<Selecionador*>TodosSelecionadores;
+	//vector<Staff*> EquipaTecnica;
+	BST<Selecionador>TodosSelecionadores;
 
 public:
     /** @brief * National Team empty constructor
@@ -177,10 +197,7 @@ public:
 * @param nome is the staff's name
 * @return  pointer to the object with that name
 */
-	Staff* GetStaff(string nome);
-
-
-	Selecionador* GetSelecionador(string nome);
+	Staff GetStaff(string nome);
 
     /** @brief * Gets a vector with pointers to all competitions
 * @return  vector with pointers to all competitions
@@ -191,5 +208,4 @@ public:
 * @return  vector with pointers to all players
 */
 	vector<JogadorSelecao*>getAllPlayers() const;
-
 };
