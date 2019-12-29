@@ -772,6 +772,6 @@ void Selecao::MakeConvocatoria() {
         }
     }while(!selecionador_exists);
     cout << "Para inserir jogos na convocatoria aceda ao menu jogos!"<<endl;
-    campeonatos.push_back(c1);
+    campeonatos.push_back(c1);//a
 }
 
