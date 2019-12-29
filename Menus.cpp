@@ -15,7 +15,7 @@ void BegginingMenu(Selecao &s) {
 		cout << endl << " [0] EXIT Program.\n";
 		switch (askOption()) {
 			case 0:
-				s.WriteFile("..\\Populacao.txt", "..\\Jogos.txt", "..\\Convocatorias.txt");
+				//s.WriteFile("..\\Populacao.txt", "..\\Jogos.txt", "..\\Convocatorias.txt");
 				exit(1);
 			case 1:
 				ConvocatoriasSubMenu(s);
@@ -373,6 +373,7 @@ void StaffSubMenu(Selecao &s) {
     cout << " [2] Remover Staff da Selecao\n"; 
     cout << " [3] Alterar Staff da Selecao\n";  
     cout << " [4] Ver Staff da Selecao\n";
+    cout << " [5] Ver Selecionadores\n";
     cout << endl << " [0] EXIT Menu.\n" << endl;
     switch (askOption()) {
         case 0:
@@ -407,6 +408,11 @@ void StaffSubMenu(Selecao &s) {
         case 4:
         {
             s.showAllStaff();
+            break;
+        }
+        case 5:
+        {
+            s.showAllSelecionadores();
             break;
         }
     }

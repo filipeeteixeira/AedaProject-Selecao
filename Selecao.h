@@ -15,7 +15,7 @@ class Selecao {
 	vector<Jogador*> OutrosJogadores; //vetor com jogadores de equipas adversarias com que a sele�ao ja jogou
 	vector<Jogo*>TodosJogos;
 	vector<Staff*> EquipaTecnica;
-	BST<Selecionador>TodosSelecionadores;
+	BST<Selecionador*>TodosSelecionadores;
 
 public:
     /** @brief * National Team empty constructor
@@ -179,6 +179,9 @@ public:
 */
 	Staff* GetStaff(string nome);
 
+
+	Selecionador* GetSelecionador(string nome);
+
     /** @brief * Gets a vector with pointers to all competitions
 * @return  vector with pointers to all competitions
 */
@@ -188,4 +191,5 @@ public:
 * @return  vector with pointers to all players
 */
 	vector<JogadorSelecao*>getAllPlayers() const;
+
 };

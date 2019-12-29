@@ -1,8 +1,7 @@
 #include "Selecao.h"
 #include <fstream>
-//novo parametro string nos staff
-//fazer funçao que determina se um membro da staff e atual ou antigo e dps adiciona-lo a tabela
-Selecao::Selecao()
+
+Selecao::Selecao():TodosSelecionadores(new Selecionador("","","",0,"",0,{tuple<string,Date>("",Date("0/0/0"))}))
 {
 }
 
@@ -48,9 +47,9 @@ int Selecao::ReadFile(string PersonsFile, string JogosFile, string Convocatorias
 			getline(infile1, name, ';');
 			getline(infile1, funcao, ';');
 			getline(infile1, dataN, ';');
-            getline(infile1, contracto, ';');
+            getline(infile1, salario, ';');
             if (funcao ==  "Selecionador Nacional") {
-                getline(infile1, salario, '(');
+                getline(infile1, contracto, '(');
                 getline(infile1, nTitulos, ')');
                 for (size_t i = 1; i <= stoi(nTitulos); i++) {
                     getline(infile1, local, ';');
@@ -64,12 +63,13 @@ int Selecao::ReadFile(string PersonsFile, string JogosFile, string Convocatorias
                 }
                 if (stoi(nTitulos)==0)
                     getline(infile1,tmp); //remover o \n depois de ler o numero de titulos
-                Selecionador new_selecionador = Selecionador(name, dataN, funcao, stoi(salario), stoi(nTitulos),
+                Selecionador *new_selecionador = new Selecionador(name, dataN, funcao, stoi(salario),contracto, stoi(nTitulos),
                                                              titulos);
-                //TodosSelecionadores.insert(new_selecionador);
+                TodosSelecionadores.insert(new_selecionador);
+                titulos.clear();
             }
             else {
-                getline(infile1, salario);
+                getline(infile1, contracto);
                 Staff *new_staff = new Staff(name, dataN, funcao, stoi(salario),contracto);
                 EquipaTecnica.push_back(new_staff);
             }
@@ -255,11 +255,11 @@ int Selecao::ReadFile(string PersonsFile, string JogosFile, string Convocatorias
                 stringstream ss;
                 ss << line;
                 string NomeStaff;
-                Staff* staff_conv;
+                Selecionador* selecionador_conv;
 				while (getline(ss, NomeStaff, ';')) {
 					try {
-						staff_conv = GetStaff(NomeStaff); //procura na selecao o staff desta convocatoria
-						new_convocatoria->addStaffConvocado(staff_conv); //cria o vetor de staff convocados da convocatoria
+                        selecionador_conv = GetSelecionador(NomeStaff);
+                        new_convocatoria->setSelecionadorConvocado(selecionador_conv); //cria o vetor de selecionador convocados da convocatoria
 					}
 					catch (StaffInexistente(&Si)) {
 						continue;
@@ -268,14 +268,31 @@ int Selecao::ReadFile(string PersonsFile, string JogosFile, string Convocatorias
                 line_read++;
                 break;
 			    }
-			case 5:
+                case 5:{
+                    stringstream ss;
+                    ss << line;
+                    string NomeStaff;
+                    Staff* staff_conv;
+                    while (getline(ss, NomeStaff, ';')) {
+                        try {
+                            staff_conv = GetStaff(NomeStaff); //procura na selecao o staff desta convocatoria
+                            new_convocatoria->addStaffConvocado(staff_conv); //cria o vetor de staff convocados da convocatoria
+                        }
+                        catch (StaffInexistente(&Si)) {
+                            continue;
+                        }
+                    }
+                    line_read++;
+                    break;
+                }
+			case 6:
 			{
 				Date date1 = Date(line);
 				new_convocatoria->setBegginingDate(date1);
 				line_read++;
 				break;
 			}
-			case 6:
+			case 7:
 			{
 				Date date2 = Date(line);
 				new_convocatoria->setEndingDate(date2);
@@ -633,6 +650,7 @@ Staff* Selecao::GetStaff(string nome)
             return (*x);
         }
     }
+
     throw StaffInexistente(nome);
 }
 
@@ -682,5 +700,25 @@ void Selecao::addtoConvocatoria(string id_conv, string id_player){
 	}
 	if (!found_convocatoria)
 		throw ConvocatoriaInexistente(id_conv);
+}
+
+void Selecao::showAllSelecionadores() const {
+    BSTItrIn<Selecionador*>it(TodosSelecionadores);
+    while(!it.isAtEnd()){
+        it.retrieve()->getInfo();
+        cout << endl << "------------";
+        it.advance();
+    }
+}
+
+Selecionador *Selecao::GetSelecionador(string nome) {
+    BSTItrIn<Selecionador*>it(TodosSelecionadores);
+    while(!it.isAtEnd()){
+        if(it.retrieve()->getNome()==nome){
+            return (it.retrieve());
+        }
+        it.advance();
+    }
+    throw StaffInexistente(nome);
 }
 

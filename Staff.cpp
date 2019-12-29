@@ -13,7 +13,7 @@ Staff::Staff(string nm, string dNas, string fnc, int s,string cntr){
 ostream& operator<<(ostream& out, Staff* stf)
 {
 	out << "Nome :" + stf->getNome() << endl << "Data Nascimento: " << stf->getDNascimento() << endl << "Funcao: "
-	<< stf->getFuncao() << endl << "Salario: " << to_string(stf->getSalario()) << endl;
+	<< stf->getFuncao() << endl << "Salario: " << to_string(stf->getSalario()) << endl << "Contrato: " << stf->getContrato() << endl;
 	return out;
 }
 
@@ -24,10 +24,13 @@ Selecionador::Selecionador(string nm, string dNas, string fnc, int s,string cntr
 
 void Selecionador::getInfo() {
     cout << endl << "Nome: " << this->getNome() << endl <<  "Titulos Ganhos: " << this->titulosGanhos << endl;
-    cout << "Selecoes: " << endl;
+    cout << "Contrato: " << this->getContrato() << endl;
+    cout << "Salario: " << this->getSalario() << endl;
+    cout << "Selecoes " << endl;
     for (size_t i=0;i<this->selecoes.size();i++){
         cout << get<0>(this->selecoes[i]) << " - " << get<1>(this->selecoes[i]);
     }
+
 }
 
 ostream &operator<<(ostream &out, Selecionador *sl1) {
@@ -35,9 +38,9 @@ ostream &operator<<(ostream &out, Selecionador *sl1) {
     return out;
 }
 
-bool Selecionador::operator<(const Selecionador &sl1) const {
-    if (this->titulosGanhos==sl1.titulosGanhos){
-        return getNome() < sl1.getNome();
+bool Selecionador::operator<(const Selecionador *sl1) const {
+    if (this->titulosGanhos==sl1->titulosGanhos){
+        return getNome() < sl1->getNome();
     }
-    return this->titulosGanhos<sl1.titulosGanhos;
+    return this->titulosGanhos<sl1->titulosGanhos;
 }

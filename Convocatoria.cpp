@@ -38,6 +38,7 @@ void Convocatoria::getInfo() const {
     cout << "Tipo de Campeonato: " << tipo_campeonato << endl;
     cout << "Data de inicio: " << data_inicio << endl;
     cout << "Data de fim: " << data_fim << endl;
+    cout << "Selecionador: " << SelecionadorConvocado->getNome() << endl;
     cout << "Jogos(" << campeonato.size() << "):\n";
     for (auto &x :campeonato){
 		cout << x << endl;
@@ -328,6 +329,10 @@ ostream& operator<<(ostream& out, Convocatoria* cnv)
 {
 	out << cnv->getTipoCampeonato() << " - Data: " << cnv->getDataInicio() << " ate " << cnv->getDataFim();
 	return out;
+}
+
+void Convocatoria::setSelecionadorConvocado(Selecionador *s) {
+    this->SelecionadorConvocado=s;
 }
 
 void swapPlayer(JogadorSelecao** xp, JogadorSelecao** yp)

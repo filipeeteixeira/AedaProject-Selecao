@@ -79,7 +79,7 @@ public:
     Selecionador(string nm, string dNas, string fnc, int s,string cntr, int titulosGanhos, vector<tuple<string,Date>> sel);
     void getInfo();
     friend ostream& operator<<(ostream& out, Selecionador* sl1);
-    bool operator<(const Selecionador &sl1) const;
+    bool operator<(const Selecionador *sl1) const;
 };
 
 class StaffInexistente{
