@@ -9,6 +9,7 @@
 #include <tuple>
 #include "BST.h"
 #include <unordered_set>
+
 struct staffhash
 {
     int operator() (const Staff & staff1) const
@@ -28,6 +29,7 @@ struct staffeq{
 
 
 typedef unordered_set<Staff,staffhash,staffeq> tabHstaff;
+
 class Selecao {
     tabHstaff stafftotal;//possui a info do vetor equipa tecnica e do vetor staff convocado
 	vector<Convocatoria*> campeonatos; //vetor com as diferentes convocatorias da sele�ao

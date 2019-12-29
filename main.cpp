@@ -7,7 +7,7 @@
 
 
 int main() {
-	
+
 	Selecao s; //cria o objeto selecao
 
 	/*ao ler os 3 ficheiros constroi-se o objeto seleçao

@@ -3,6 +3,7 @@
 
 
 void BegginingMenu(Selecao &s) {
+
 	while (1) {
 		cout << endl;
 		cout << "-----------------\n";
@@ -374,11 +375,11 @@ void AlterarStaffSubMenu(Selecao& s) {
         }
     }
 }
-string data_atual;
-Date dataatual=Date(data_atual);
+//string data_atual;
+//Date dataatual=Date(data_atual);
 void StaffSubMenu(Selecao &s) {
     cout<<"Digite a data atual na forma dd/mm/yyyy"<<endl;
-    cin>>data_atual;
+  //  cin>>data_atual;
 
     cout << "Enter your choice and press return: " << endl;
     cout << " [1] Adicionar Staff a Selecao\n";
