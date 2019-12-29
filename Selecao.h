@@ -26,8 +26,6 @@ struct staffeq{
     }
 };
 
-
-
 typedef unordered_set<Staff,staffhash,staffeq> tabHstaff;
 
 class Selecao {

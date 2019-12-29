@@ -1,6 +1,5 @@
 #include "Selecao.h"
 #include <fstream>
-#include <unordered_set>
 
 Selecao::Selecao():TodosSelecionadores(Selecionador("","","",0,"",0,{tuple<string,Date>("",Date("0/0/0"))}))
 {
@@ -71,8 +70,8 @@ int Selecao::ReadFile(string PersonsFile, string JogosFile, string Convocatorias
             }
             else {
                 getline(infile1, contracto);
-                Staff *new_staff = new Staff(name, dataN, funcao, stoi(salario),contracto);
-                stafftotal.insert(*new_staff);
+                Staff new_staff = Staff(name, dataN, funcao, stoi(salario),contracto);
+                stafftotal.insert(new_staff);
 
             }
 		}
@@ -488,17 +487,14 @@ void Selecao::showPlayer(string numero) const{
 }
 
 void Selecao::showAllStaff() const {
-    auto it = stafftotal.begin();
-    while (it != stafftotal.end()) {
-        cout << &it;
-        it++;
+    unordered_set<Staff,staffhash,staffeq>::const_iterator iteratorH=stafftotal.begin();
+    while (iteratorH != stafftotal.end()) {
+        cout << (*iteratorH);
+        iteratorH++;
     }
 }
 
-
-
-
-    void Selecao::showAllCosts() const {
+void Selecao::showAllCosts() const {
 	double playerCosts = 0, staffCosts = 0, totalCosts = 0;
 	int totalDays = 0;
 	for (auto& x : campeonatos) {
