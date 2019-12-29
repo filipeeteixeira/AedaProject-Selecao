@@ -2,7 +2,7 @@
 #include <fstream>
 #include <unordered_set>
 
-Selecao::Selecao():TodosSelecionadores(new Selecionador("","","",0,"",0,{tuple<string,Date>("",Date("0/0/0"))}))
+Selecao::Selecao():TodosSelecionadores(Selecionador("","","",0,"",0,{tuple<string,Date>("",Date("0/0/0"))}))
 {
 }
 
@@ -64,7 +64,7 @@ int Selecao::ReadFile(string PersonsFile, string JogosFile, string Convocatorias
                 }
                 if (stoi(nTitulos)==0)
                     getline(infile1,tmp); //remover o \n depois de ler o numero de titulos
-                Selecionador *new_selecionador = new Selecionador(name, dataN, funcao, stoi(salario),contracto, stoi(nTitulos),
+                Selecionador new_selecionador = Selecionador(name, dataN, funcao, stoi(salario),contracto, stoi(nTitulos),
                                                              titulos);
                 TodosSelecionadores.insert(new_selecionador);
                 titulos.clear();
@@ -257,11 +257,11 @@ int Selecao::ReadFile(string PersonsFile, string JogosFile, string Convocatorias
                 stringstream ss;
                 ss << line;
                 string NomeStaff;
-                Selecionador* selecionador_conv;
+                Selecionador selecionador_conv = Selecionador("","","",0,"",0,{tuple<string,Date>("",Date("0/0/0"))});
 				while (getline(ss, NomeStaff, ';')) {
 					try {
-                        selecionador_conv = GetSelecionador(NomeStaff);
-                        new_convocatoria->setSelecionadorConvocado(selecionador_conv); //cria o vetor de selecionador convocados da convocatoria
+                        selecionador_conv = getSelecionador(NomeStaff);
+                        new_convocatoria->setSelecionadorConvocado(&selecionador_conv);
 					}
 					catch (StaffInexistente(&Si)) {
 						continue;
@@ -708,22 +708,74 @@ void Selecao::addtoConvocatoria(string id_conv, string id_player){
 }
 
 void Selecao::showAllSelecionadores() const {
-    BSTItrIn<Selecionador*>it(TodosSelecionadores);
+    BSTItrIn<Selecionador>it(TodosSelecionadores);
     while(!it.isAtEnd()){
-        it.retrieve()->getInfo();
+        it.retrieve().getInfo();
         cout << endl << "------------";
         it.advance();
     }
 }
 
-Selecionador *Selecao::GetSelecionador(string nome) {
-    BSTItrIn<Selecionador*>it(TodosSelecionadores);
+Selecionador Selecao::getSelecionador(string nome) const {
+    BSTItrIn<Selecionador>it(TodosSelecionadores);
     while(!it.isAtEnd()){
-        if(it.retrieve()->getNome()==nome){
+        if(it.retrieve().getNome()==nome){
             return (it.retrieve());
         }
         it.advance();
     }
     throw StaffInexistente(nome);
    }
+
+void Selecao::MakeConvocatoria() {
+    Convocatoria *c1=new Convocatoria("",Date("0/0/0"),Date("0/0/0"));
+    string tipoC,id, data_i, data_f, seleci;
+    cout << "Insira o tipo de campeonato: ";
+    getline(cin,tipoC);
+    c1->setTipoCampeonato(tipoC);
+
+    bool id_exists=false;
+    do {
+        cout << "Insira um id para a convcocatoria: " << endl;
+        getline(cin,id);
+        for(auto &conv: campeonatos){
+            if (conv->getId()==id) {
+                id_exists = true;
+                break;
+            }
+        }
+        if (id_exists)
+            cout << "O id inserido ja se encontra atribuido!"<< endl;
+    }while(id_exists);
+    c1->setId(id);
+
+    cout << "Insira a data de inicio: ";
+    getline(cin,data_i);
+    cout << "Insira a data de fim: ";
+    getline(cin,data_f);
+    c1->setBegginingDate(Date(data_i));
+    c1->setEndingDate(Date(data_f));
+
+    bool selecionador_exists=false;
+    do {
+        cout << "Insira o Nome do Selecionador Convocado:" << endl;
+        BSTItrIn<Selecionador > it(TodosSelecionadores);
+        while (!it.isAtEnd()) {
+            cout << it.retrieve().getNome() << endl;
+            it.advance();
+        }
+        getline(cin,seleci);
+        BSTItrIn<Selecionador > it1(TodosSelecionadores);
+        while (!it1.isAtEnd()) {
+            if (it1.retrieve().getNome() == seleci) {
+                it1.retrieve().setSelecoes(c1->getTipoCampeonato(), c1->getDataInicio());
+                c1->setSelecionadorConvocado(&it1.retrieve());
+                selecionador_exists=true;
+            }
+            it1.advance();
+        }
+    }while(!selecionador_exists);
+    cout << "Para inserir jogos na convocatoria aceda ao menu jogos!"<<endl;
+    campeonatos.push_back(c1);
+}
 

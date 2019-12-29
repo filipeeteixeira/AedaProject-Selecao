@@ -158,6 +158,9 @@ public:
 */
     void addLesaoConvocatoria(string id_conv,string id_player,string day);
 
+    void MakeConvocatoria();
+
+
     /** @brief * Gets a pointer to a player with the given number
 * @param numero is the player's number
 * @return  pointer to the object with that number
@@ -208,4 +211,6 @@ public:
 * @return  vector with pointers to all players
 */
 	vector<JogadorSelecao*>getAllPlayers() const;
+
+	Selecionador getSelecionador(string nome) const;
 };

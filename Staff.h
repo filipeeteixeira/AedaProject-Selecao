@@ -64,7 +64,7 @@ public:
     *@param s is the new salary
 */
     
-	friend ostream& operator<<(ostream& out, Staff* stf);
+	friend ostream& operator<<(ostream& out, Staff& stf);
 
 /** @brief * Prints staff in a friendly way
     *@param stf is the pointer to the staff we want to print
@@ -78,8 +78,9 @@ class Selecionador :public Staff{
 public:
     Selecionador(string nm, string dNas, string fnc, int s,string cntr, int titulosGanhos, vector<tuple<string,Date>> sel);
     void getInfo();
+    void setSelecoes(string cmp, Date data);
     friend ostream& operator<<(ostream& out, Selecionador* sl1);
-    bool operator<(const Selecionador *sl1) const;
+    bool operator<(const Selecionador &sl1) const;
 };
 
 class StaffInexistente{

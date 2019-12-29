@@ -40,21 +40,27 @@ void BegginingMenu(Selecao &s) {
 void ConvocatoriasSubMenu(Selecao &s) {
 	cout << endl;
 	cout << "Enter your choice and press return: " << endl;
-	cout << " [1] Ver Todas as Convocatorias\n";
-	cout << " [2] Ver convocatoria \n";
-    cout << " [3] Ver pessoal convocado a um dada convocatoria\n";
-    cout << " [4] Lesionar um jogador numa dada convocatoria\n";
-    cout << " [5] Ver os melhores jogadores de uma dada convocatoria\n";
+	cout << " [1] Fazer Convocatoria\n";
+	cout << " [2] Ver Todas as Convocatorias\n";
+	cout << " [3] Ver convocatoria \n";
+    cout << " [4] Ver pessoal convocado a um dada convocatoria\n";
+    cout << " [5] Lesionar um jogador numa dada convocatoria\n";
+    cout << " [6] Ver os melhores jogadores de uma dada convocatoria\n";
 	cout << endl << " [0] EXIT.\n" << endl;
 	switch (askOption()) {
 		case 0:
 			return;
-		case 1:
+        case 1:
+        {
+            s.MakeConvocatoria();
+            break;
+        }
+		case 2:
 		{
 			s.showAllConvocatorias();
 			break;
 		}
-		case 2:
+		case 3:
 		{
 			do {
 				string id = AskConvocatoriaProcedure();
@@ -68,7 +74,7 @@ void ConvocatoriasSubMenu(Selecao &s) {
 			} while (1);
 			break;
 		}
-	    case 3:
+	    case 4:
         {
             do {
                 string id = AskConvocatoriaProcedure();
@@ -82,7 +88,7 @@ void ConvocatoriasSubMenu(Selecao &s) {
             } while (1);
             break;
         }
-	    case 4:
+	    case 5:
         {
             do {
 				try {
@@ -104,7 +110,7 @@ void ConvocatoriasSubMenu(Selecao &s) {
             break;
 
         }
-        case 5:
+        case 6:
         {
             do {
                 string id = AskConvocatoriaProcedure();

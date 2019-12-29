@@ -17,6 +17,7 @@ ostream& operator<<(ostream& out, Staff& stf)
 	return out;
 }
 
+
 Selecionador::Selecionador(string nm, string dNas, string fnc, int s,string cntr, int tG, vector<tuple<string, Date>> sel):Staff( nm, dNas, fnc, s,cntr) {
     this->titulosGanhos=tG;
     this->selecoes=sel;
@@ -28,7 +29,7 @@ void Selecionador::getInfo() {
     cout << "Salario: " << this->getSalario() << endl;
     cout << "Selecoes " << endl;
     for (size_t i=0;i<this->selecoes.size();i++){
-        cout << get<0>(this->selecoes[i]) << " - " << get<1>(this->selecoes[i]);
+        cout << get<0>(this->selecoes[i]) << " - " << get<1>(this->selecoes[i])<<endl;
     }
 
 }
@@ -38,9 +39,13 @@ ostream &operator<<(ostream &out, Selecionador *sl1) {
     return out;
 }
 
-bool Selecionador::operator<(const Selecionador *sl1) const {
-    if (this->titulosGanhos==sl1->titulosGanhos){
-        return getNome() < sl1->getNome();
+bool Selecionador::operator<(const Selecionador &sl1) const {
+    if (this->titulosGanhos==sl1.titulosGanhos){
+        return getNome() < sl1.getNome();
     }
-    return this->titulosGanhos<sl1->titulosGanhos;
+    return this->titulosGanhos<sl1.titulosGanhos;
+}
+
+void Selecionador::setSelecoes(string cmp,Date dataI) {
+    this->selecoes.push_back(tuple<string,Date>(cmp,dataI));
 }
