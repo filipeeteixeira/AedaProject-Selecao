@@ -9,11 +9,11 @@
 #include "Staff.h"
 #include "Date.h"
 #include "Jogador.h"
+#include <tuple>
 
 using namespace std;
 
 class Convocatoria {
-
 	vector<Jogo*> campeonato;
 	vector<JogadorSelecao*> jogadoresConvocados;
 	vector<Staff*> staffConvocado;

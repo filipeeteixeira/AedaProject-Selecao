@@ -4,6 +4,8 @@
 #include <string>
 #include <vector>
 #include <sstream>
+#include <regex>
+#include <chrono>
 #include <ctime>
 
 using namespace std;
@@ -57,3 +59,7 @@ public:
   friend ostream& operator<<(ostream& out, const Date & date);
 
 };
+
+int DateValidation(string date);
+
+Date getCurrentDate();

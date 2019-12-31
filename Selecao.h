@@ -8,6 +8,7 @@
 #include "Jogo.h"
 #include <tuple>
 #include "BST.h"
+#include "Date.h"
 #include <unordered_set>
 
 struct staffhash
@@ -212,5 +213,5 @@ public:
 */
 	vector<JogadorSelecao*>getAllPlayers() const;
 
-	Selecionador getSelecionador(string nome) const;
+	Selecionador* getSelecionador(string nome) const;
 };

@@ -72,7 +72,6 @@ int Selecao::ReadFile(string PersonsFile, string JogosFile, string Convocatorias
                 getline(infile1, contracto);
                 Staff new_staff = Staff(name, dataN, funcao, stoi(salario),contracto);
                 stafftotal.insert(new_staff);
-
             }
 		}
 	}
@@ -256,11 +255,10 @@ int Selecao::ReadFile(string PersonsFile, string JogosFile, string Convocatorias
                 stringstream ss;
                 ss << line;
                 string NomeStaff;
-                Selecionador selecionador_conv = Selecionador("","","",0,"",0,{tuple<string,Date>("",Date("0/0/0"))});
 				while (getline(ss, NomeStaff, ';')) {
 					try {
-                        selecionador_conv = getSelecionador(NomeStaff);
-                        new_convocatoria->setSelecionadorConvocado(&selecionador_conv);
+					    Selecionador *ns = getSelecionador(NomeStaff);
+                        new_convocatoria->setSelecionadorConvocado(ns);
 					}
 					catch (StaffInexistente(&Si)) {
 						continue;
@@ -712,11 +710,11 @@ void Selecao::showAllSelecionadores() const {
     }
 }
 
-Selecionador Selecao::getSelecionador(string nome) const {
+Selecionador* Selecao::getSelecionador(string nome) const {
     BSTItrIn<Selecionador>it(TodosSelecionadores);
     while(!it.isAtEnd()){
         if(it.retrieve().getNome()==nome){
-            return (it.retrieve());
+            return (&it.retrieve());
         }
         it.advance();
     }
@@ -745,11 +743,16 @@ void Selecao::MakeConvocatoria() {
     }while(id_exists);
     c1->setId(id);
 
-    cout << "Insira a data de inicio: ";
-    getline(cin,data_i);
-    cout << "Insira a data de fim: ";
-    getline(cin,data_f);
+    do {
+        cout << "Insira a data de inicio (DD/MM/AAAA): ";
+        getline(cin, data_i);
+    }while(DateValidation(data_i) == 1);
     c1->setBegginingDate(Date(data_i));
+
+    do {
+        cout << "Insira a data de fim(DD/MM/AAAA): ";
+        getline(cin, data_f);
+    }while(DateValidation(data_f) == 1);
     c1->setEndingDate(Date(data_f));
 
     bool selecionador_exists=false;
@@ -771,7 +774,7 @@ void Selecao::MakeConvocatoria() {
             it1.advance();
         }
     }while(!selecionador_exists);
-    cout << "Para inserir jogos na convocatoria aceda ao menu jogos!"<<endl;
-    campeonatos.push_back(c1);//a
+    cout << "NOTA: Para inserir jogos na convocatoria aceda ao menu jogos!"<<endl;
+    campeonatos.push_back(c1);
 }
 

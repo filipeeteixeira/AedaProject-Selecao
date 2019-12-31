@@ -6,6 +6,7 @@ void BegginingMenu(Selecao &s) {
 
 	while (1) {
 		cout << endl;
+        cout << "Data:" << getCurrentDate() << endl;
 		cout << "-----------------\n";
 		cout << "Selecao Nacional" << endl;
 		cout << "-----------------\n";
@@ -40,6 +41,7 @@ void BegginingMenu(Selecao &s) {
 
 void ConvocatoriasSubMenu(Selecao &s) {
 	cout << endl;
+    cout << "Data:" << getCurrentDate() << endl;
 	cout << "Enter your choice and press return: " << endl;
 	cout << " [1] Fazer Convocatoria\n";
 	cout << " [2] Ver Todas as Convocatorias\n";
@@ -158,6 +160,7 @@ void JogosSubMenu(Selecao &s) {
 }
 
 void JogadoresSubMenu(Selecao &s) {
+    cout << "Data:" << getCurrentDate() << endl;
 	cout << "Enter your choice and press return: " << endl;
 	cout << " [1] Adicionar Jogador a Selecao\n";
 	cout << " [2] Remover Jogador da Selecao\n";  
@@ -375,20 +378,18 @@ void AlterarStaffSubMenu(Selecao& s) {
         }
     }
 }
-//string data_atual;
-//Date dataatual=Date(data_atual);
-void StaffSubMenu(Selecao &s) {
-    cout<<"Digite a data atual na forma dd/mm/yyyy"<<endl;
-  //  cin>>data_atual;
 
+void StaffSubMenu(Selecao &s) {
+    cout << endl;
+    cout << "Data:" << getCurrentDate() << endl;
     cout << "Enter your choice and press return: " << endl;
     cout << " [1] Adicionar Staff a Selecao\n";
     cout << " [2] Remover Staff da Selecao\n"; 
     cout << " [3] Alterar Staff da Selecao\n";  
     cout << " [4] Ver Staff total\n";
     cout << " [5] Ver Selecionadores\n";
-    cout <<  "[6] Ver Staff atual\n";
-    cout <<  "[7] Ver staff antigo\n";
+    cout << " [6] Ver Staff atual\n";
+    cout << " [7] Ver staff antigo\n";
     cout << endl << " [0] EXIT Menu.\n" << endl;
     switch (askOption()) {
         case 0:
