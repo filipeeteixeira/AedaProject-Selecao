@@ -16,7 +16,7 @@ using namespace std;
 class Convocatoria {
 	vector<Jogo*> campeonato;
 	vector<JogadorSelecao*> jogadoresConvocados;
-	vector<Staff*> staffConvocado;
+	vector<Staff> staffConvocado;
 	Selecionador* SelecionadorConvocado;
 	string tipo_campeonato, id;
 	Date data_inicio, data_fim;
@@ -64,7 +64,7 @@ public:
     /** @brief * Adds a selected staff member to the competition
 * @param s is a pointer to the staff member
 */
-	void addStaffConvocado(Staff* s);
+	void addStaffConvocado(Staff s);
 
 
 	void setSelecionadorConvocado(Selecionador *s);
@@ -194,7 +194,7 @@ public:
     /** @brief * Gets competition's national staff
 * @return vector with pointers to the national staff on the competition
 */
-	vector<Staff*>getStaffConvocado() const;
+	vector<Staff>getStaffConvocado() const;
 
     /** @brief * Prints competition in a friendly way
 * @param cnv is a pointer to the competition
@@ -228,7 +228,7 @@ public:
 * @param v is a vector of pointers to national players to be sorted
  * @param type is the criteria
 */
-void StaffBubbleSort(vector<Staff*>& v, string type);
+void StaffBubbleSort(vector<Staff> v, string type);
 
 
 /** @brief * Sorts staff based on salary or name

@@ -34,7 +34,7 @@ void Selecionador::getInfo() {
 
 }
 
-ostream &operator<<(ostream &out, Selecionador *sl1) {
+ostream& operator<<(ostream& out, const Selecionador* sl1){
     out << "Nome: " << sl1->getNome() << "\n" <<  "Titulos Ganhos: " << to_string(sl1->titulosGanhos) << "\n";
     return out;
 }

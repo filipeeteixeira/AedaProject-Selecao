@@ -111,7 +111,9 @@ public:
     /** @brief * Shows all national staff
 */
 	void showAllStaff()const;
-
+/** @brief * Allows to modify the staff info;
+ */
+    void modifyStaff(Staff st);
 
 	void showAllSelecionadores()const;
 

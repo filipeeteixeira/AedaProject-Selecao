@@ -27,7 +27,7 @@ void Convocatoria::RemoveJogadorConvocado(string num)
 	}
 }
 
-void Convocatoria::addStaffConvocado(Staff * s) {
+void Convocatoria::addStaffConvocado(Staff  s) {
     this->staffConvocado.push_back(s);
 }
 
@@ -98,11 +98,11 @@ void Convocatoria::showStaff() const {
 		else cout << "Categoria invalida!\n";
 	} while (!valid);
 
-	vector<Staff*> v = this->getStaffConvocado();
+	vector<Staff> v = this->getStaffConvocado();
 
 	StaffBubbleSort(v, sort);
 
-	for (auto& x : v) {
+	for (auto x : v) {
 		cout << x << endl;
 	}
 	cout << endl;
@@ -187,7 +187,7 @@ vector<Jogo*> Convocatoria::getCampeonato() const
 {
 	return campeonato;
 }
-vector<Staff*> Convocatoria::getStaffConvocado() const
+vector<Staff> Convocatoria::getStaffConvocado() const
 {
 	return staffConvocado;
 }
@@ -240,8 +240,8 @@ double Convocatoria::getStaffCost() const {
 	int days;
 	days = Convocatoria::getDuration();
 
-	for (auto& x : staffConvocado) {
-		total += days * 0.1 * x->getSalario();
+	for (auto x : staffConvocado) {
+		total += days * 0.1 * x.getSalario();
 	}
 	return total;
 }
@@ -341,11 +341,11 @@ void swapPlayer(JogadorSelecao** xp, JogadorSelecao** yp)
 	*xp = *yp;
 	*yp = temp;
 }
-void swapStaff(Staff** xp, Staff** yp)
+void swapStaff(Staff* xp, Staff* yp)
 {
-	Staff* temp = *xp;
-	*xp = *yp;
-	*yp = temp;
+	Staff* temp = xp;
+	xp = yp;
+	yp = temp;
 }
 
 
@@ -394,7 +394,7 @@ void PlayerBubbleSort(vector<JogadorSelecao*>& v, string type)
 	}
 }
 
-void StaffBubbleSort(vector<Staff*>& v, string type)
+void StaffBubbleSort(vector<Staff> v, string type)
 {
 	if (type == "nome") {
 		int i, j;
@@ -404,7 +404,7 @@ void StaffBubbleSort(vector<Staff*>& v, string type)
 			swapped = false;
 			for (j = 0; j < v.size() - i - 1; j++)
 			{
-				if (v[j]->getNome() > v[j + 1]->getNome())
+				if (v[j].getNome() > v[j + 1].getNome())
 				{
 					swapStaff(&v[j], &v[j + 1]);
 					swapped = true;
@@ -424,7 +424,7 @@ void StaffBubbleSort(vector<Staff*>& v, string type)
 			swapped = false;
 			for (j = 0; j < v.size() - i - 1; j++)
 			{
-				if (v[j]->getSalario() > v[j + 1]->getSalario())
+				if (v[j].getSalario() > v[j + 1].getSalario())
 				{
 					swapStaff(&v[j], &v[j + 1]);
 					swapped = true;

@@ -351,7 +351,9 @@ void AlterarStaffSubMenu(Selecao& s) {
 				string nome = AskStaffProcedure();
 				try {
 					cout << "Insira a funcao: "; cin >> funcao;
-					s.GetStaff(nome).setFuncao(funcao);
+					Staff st=s.GetStaff(nome);
+					st.setFuncao(funcao);
+					s.modifyStaff(st);
 					break;
 				}
 				catch (StaffInexistente & Si) {
@@ -367,7 +369,9 @@ void AlterarStaffSubMenu(Selecao& s) {
 				string nome = AskStaffProcedure();
 				try {
 					cout << "Insira o salario: "; cin >> salario;
-					s.GetStaff(nome).setSalario(salario);
+                    Staff st=s.GetStaff(nome);
+                    st.setSalario(salario);
+                    s.modifyStaff(st);
 					break;
 				}
 				catch (StaffInexistente & Si) {

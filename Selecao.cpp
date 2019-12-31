@@ -275,7 +275,7 @@ int Selecao::ReadFile(string PersonsFile, string JogosFile, string Convocatorias
                     while (getline(ss, NomeStaff, ';')) {
                         try {
                            auto staff_conv = GetStaff(NomeStaff); //procura na selecao o staff desta convocatoria
-                            new_convocatoria->addStaffConvocado(&staff_conv); //cria o vetor de staff convocados da convocatoria
+                            new_convocatoria->addStaffConvocado(staff_conv); //cria o vetor de staff convocados da convocatoria
                         }
                         catch (StaffInexistente(&Si)) {
                             continue;
@@ -390,10 +390,10 @@ int Selecao::WriteFile(string PersonsFile, string JogosFile, string Convocatoria
 
 		for (size_t i = 0; i < x->getStaffConvocado().size(); i++) { //escreve o nome do staff
 			if (i == x->getStaffConvocado().size() - 1) {
-				outfile3 << x->getStaffConvocado()[i]->getNome() << endl;
+				outfile3 << x->getStaffConvocado()[i].getNome() << endl;
 				break;
 			}
-			outfile3 << x->getStaffConvocado()[i]->getNome() << ";";
+			outfile3 << x->getStaffConvocado()[i].getNome() << ";";
 		}
 		outfile3 << x->getDataInicio() << endl;
 		outfile3 << x->getDataFim() << endl;
@@ -491,6 +491,15 @@ void Selecao::showAllStaff() const {
         iteratorH++;
     }
 }
+void Selecao::modifyStaff(Staff st){
+      unordered_set<Staff,staffhash,staffeq>::const_iterator iteratorH=stafftotal.begin();
+    while (iteratorH != stafftotal.end()) {
+        if (st.getNome()==(*iteratorH).getNome())stafftotal.erase(iteratorH);
+        stafftotal.insert(st);
+        iteratorH++;
+    }
+}
+
 
 void Selecao::showAllCosts() const {
 	double playerCosts = 0, staffCosts = 0, totalCosts = 0;

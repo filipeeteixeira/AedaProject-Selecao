@@ -63,7 +63,11 @@ public:
     /** @brief * Sets staff salary
     *@param s is the new salary
 */
-    
+    void SetContrato(string c){(this->contrato=c);}
+    /** @brief * Sets staff contract
+  *@param c is the new state of contract
+*/
+
 	friend ostream& operator<<(ostream& out, const Staff& stf);
 
 /** @brief * Prints staff in a friendly way
@@ -72,6 +76,10 @@ public:
 };
 
 
+
+/** @brief * Sets staff contract
+ *@param c is the new contract
+*/
 class Selecionador :public Staff{
     int titulosGanhos;
     vector<tuple<string,Date>> selecoes;
