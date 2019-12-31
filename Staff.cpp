@@ -10,7 +10,7 @@ Staff::Staff(string nm, string dNas, string fnc, int s,string cntr){
     this->contrato=cntr;
 }
 
-ostream& operator<<(ostream& out, const Staff& stf)
+ostream& operator<<(ostream& out,const Staff & stf)
 {
 	out << "Nome :" + stf.getNome() << endl << "Data Nascimento: " << stf.getDNascimento() << endl << "Funcao: "
 	<< stf.getFuncao() << endl << "Salario: " << to_string(stf.getSalario()) << endl << "Contrato: " << stf.getContrato() << endl;
@@ -34,7 +34,7 @@ void Selecionador::getInfo() {
 
 }
 
-ostream &operator<<(ostream &out,const Selecionador *sl1){
+ostream &operator<<(ostream &out, Selecionador *sl1) {
     out << "Nome: " << sl1->getNome() << "\n" <<  "Titulos Ganhos: " << to_string(sl1->titulosGanhos) << "\n";
     return out;
 }
