@@ -29,7 +29,7 @@ public:
      * @param di is an object date with the beggining date
      * @param df is an object date with the ending date
 */
-    Convocatoria(string tc, Date di, Date df);
+    Convocatoria(string tc, Date di, Date df,string estado);
 
 
 

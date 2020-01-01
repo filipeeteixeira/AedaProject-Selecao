@@ -203,7 +203,7 @@ int Selecao::ReadFile(string PersonsFile, string JogosFile, string Convocatorias
 			switch (line_read) {
 			case 0:
 			{
-				new_convocatoria = new Convocatoria("", Beggining, Ending);
+				new_convocatoria = new Convocatoria("", Beggining, Ending,"");
 				new_convocatoria->setId(line);
 				id_convocatoria = line;
 				line_read++;
@@ -740,7 +740,7 @@ Selecionador* Selecao::getSelecionador(string nome) const {
    }
 
 void Selecao::MakeConvocatoria() {
-    Convocatoria *c1=new Convocatoria("",Date("0/0/0"),Date("0/0/0"));
+    Convocatoria *c1=new Convocatoria("",Date("0/0/0"),Date("0/0/0"),"");
     string tipoC,id, data_i, data_f, seleci;
     cout << "Insira o tipo de campeonato: ";
     getline(cin,tipoC);

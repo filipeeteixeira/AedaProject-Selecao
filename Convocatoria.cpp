@@ -2,7 +2,7 @@
 #include "Convocatoria.h"
 #include "Date.h"
 
-Convocatoria::Convocatoria(string tc, Date di, Date df){
+Convocatoria::Convocatoria(string tc, Date di, Date df, string estado){
     this->tipo_campeonato=tc;
     this->data_inicio=di;
     this->data_fim=df;
