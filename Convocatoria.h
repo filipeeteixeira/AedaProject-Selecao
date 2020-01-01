@@ -20,6 +20,7 @@ class Convocatoria {
 	Selecionador* SelecionadorConvocado;
 	string tipo_campeonato, id;
 	Date data_inicio, data_fim;
+    string estado;
 	map<string,string> lesoes;
 public:
 
@@ -66,6 +67,7 @@ public:
 */
 	void addStaffConvocado(Staff s);
 
+	void setEstado(string estado);
 
 	void setSelecionadorConvocado(Selecionador *s);
 

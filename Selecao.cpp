@@ -360,7 +360,7 @@ int Selecao::WriteFile(string PersonsFile, string JogosFile, string Convocatoria
 			outfile2 << "Jogador" << ";" << (ja)->getNumero() << endl;
 		}
 		outfile2 << "::::::::::::" << endl;
-		
+
 	}
 	outfile2.close();
 
@@ -371,7 +371,7 @@ int Selecao::WriteFile(string PersonsFile, string JogosFile, string Convocatoria
 	for (auto& x : campeonatos) {
 		outfile3 << x->getId() << endl;
 		outfile3 << x->getTipoCampeonato() << endl;
-		
+
 		for (size_t i = 0; i < x->getCampeonato().size(); i++) { //escreve o nome dos jogos
 			if (i == x->getCampeonato().size() - 1) {
 				outfile3 << x->getCampeonato()[i]->getNome() << endl;
@@ -604,10 +604,10 @@ void Selecao::RemovePlayer(string numero){
 			TodosJogadores.erase(x);
 			break;
 		}
-	} 
+	}
 	if(!jogador_existe)
 		throw JogadorInexistente(numero);
-	
+
 	typename vector<Jogo*> ::iterator y = TodosJogos.begin();
 	for (; y != TodosJogos.end(); y++) { //elimina de todos os jogos onde pertence
 		for (size_t i = 0; i < (*y)->getJogadoresConvocados().size(); i++) {
@@ -691,7 +691,7 @@ void Selecao::addLesaoConvocatoria(string id_conv,string id_player,string day){
         if (x->getId() == id_conv){
             x->addLesao(id_player,day);
 			found_convocatoria = true;
-        }	
+        }
     }
 	if (!found_convocatoria)
 		throw ConvocatoriaInexistente(id_conv);
@@ -792,7 +792,25 @@ void Selecao::MakeConvocatoria() {
             it1.advance();
         }
     }while(!selecionador_exists);
-    cout << "NOTA: Para inserir jogos na convocatoria aceda ao menu jogos!"<<endl;
+    c1->setEstado("A decorrer");
     campeonatos.push_back(c1);
+
+    int counter=0;
+    do{
+        string PlayerN;
+        cout << "Insira o numero dos jogadores a convocar (6): " << endl;
+        try {
+            for (auto j: TodosJogadores) {
+                cout << j << endl;
+            }
+            getline(cin, PlayerN);
+            addtoConvocatoria(c1->getId(), PlayerN);
+        }catch(JogadorInexistente(&Ji)){
+            cout << "Jogador Inexistente"<< endl;
+            continue;
+        }
+        counter++;
+    }while(counter<6);
+    cout << "NOTA: Para inserir jogos na convocatoria aceda ao menu jogos (depois de terem ocorrido)!"<<endl;
 }
 

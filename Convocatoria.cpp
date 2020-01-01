@@ -6,6 +6,7 @@ Convocatoria::Convocatoria(string tc, Date di, Date df){
     this->tipo_campeonato=tc;
     this->data_inicio=di;
     this->data_fim=df;
+    this->estado=estado;
 }
 
 void Convocatoria::addJogo(Jogo *j) {
@@ -194,7 +195,7 @@ vector<Staff> Convocatoria::getStaffConvocado() const
 
 int Convocatoria::getDuration() const {
 	return data_fim.getDay() - data_inicio.getDay() + 1;
-	
+
 }
 void Convocatoria::addLesao(string id_player, string day) {
     lesoes.insert(pair<string,string>(id_player,day));
@@ -333,6 +334,10 @@ ostream& operator<<(ostream& out, Convocatoria* cnv)
 
 void Convocatoria::setSelecionadorConvocado(Selecionador *s) {
     this->SelecionadorConvocado=s;
+}
+
+void Convocatoria::setEstado(string estado) {
+    this->estado=estado;
 }
 
 void swapPlayer(JogadorSelecao** xp, JogadorSelecao** yp)
