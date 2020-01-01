@@ -650,6 +650,15 @@ vector<JogadorSelecao*> Selecao::getAllPlayers() const
 	return TodosJogadores;
 }
 
+vector<Staff> Selecao::getAllStaff() const
+{vector<Staff>TodosStaff;
+    for(auto x:stafftotal){
+        TodosStaff.push_back(x);
+    }
+    return TodosStaff;
+}
+
+
 Staff Selecao::GetStaff(string nome)
 {
 

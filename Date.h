@@ -63,3 +63,5 @@ public:
 int DateValidation(string date);
 
 Date getCurrentDate();
+
+bool DateInRange( int startDay, int startMonth, int startYear, int endDay, int endMonth, int endYear);

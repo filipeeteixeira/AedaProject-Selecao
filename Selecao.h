@@ -33,6 +33,7 @@ class Selecao {
     tabHstaff stafftotal;//possui a info do vetor equipa tecnica e do vetor staff convocado
 	vector<Convocatoria*> campeonatos; //vetor com as diferentes convocatorias da sele�ao
 	vector<JogadorSelecao*> TodosJogadores; //vetor com todos os jogadores da sele��o
+    vector<Staff>TodosStaffs;
 	vector<Jogador*> OutrosJogadores; //vetor com jogadores de equipas adversarias com que a sele�ao ja jogou
 	vector<Jogo*>TodosJogos;
 	//vector<Staff*> EquipaTecnica;
@@ -199,9 +200,9 @@ public:
 */
 	Convocatoria* getConvocatoria(string id);
 
-    /** @brief * Gets a pointer to a staff member with the given name
+    /** @brief * Gets a staff member with the given name
 * @param nome is the staff's name
-* @return  pointer to the object with that name
+* @return   object with that name
 */
 	Staff GetStaff(string nome);
 
@@ -215,5 +216,12 @@ public:
 */
 	vector<JogadorSelecao*>getAllPlayers() const;
 
+    vector<Staff>getAllStaff() const;
+
+    /** @brief * Gets a vector with  all staff
+* @return  vector with  all staffs
+*/
+
 	Selecionador* getSelecionador(string nome) const;
 };
+

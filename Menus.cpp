@@ -395,7 +395,29 @@ void StaffSubMenu(Selecao &s) {
     cout << " [6] Ver Staff atual\n";
     cout << " [7] Ver staff antigo\n";
     cout << endl << " [0] EXIT Menu.\n" << endl;
-    switch (askOption()) {
+    vector<Staff> staff_atual;
+    vector<Staff> staff_antigo;
+    staff_antigo=s.getAllStaff();
+    string nome;
+
+    for(auto x:s.getAllConvocatorias()) {//ver se a convocatoria esta a decorrer,depois verificar quais os staffs de la
+   if(DateInRange(x->getDataInicio().getDay(), x->getDataInicio().getMonth(), x->getDataInicio().getYear(),
+                  x->getDataFim().getDay(), x->getDataFim().getMonth(), x->getDataFim().getYear())){
+
+                        //push_back no staff atual,e eliminar do staff antigo  no caso de pertencer a convocatoria atual
+                        for (auto m:x->getStaffConvocado()) {//ve quais os staff da convocatoria atual
+                            m.SetContrato("atual");
+                            staff_atual.push_back(m);
+                            s.modifyStaff(m);
+                            nome = m.getNome();
+
+                        }
+                        for (int i = 0; i < staff_antigo.size(); i++)
+                            if (staff_antigo[i].getNome() == nome)staff_antigo.erase(staff_antigo.begin() + i);
+                    }
+
+
+   switch (askOption()) {
         case 0:
             return;
         case 1:
@@ -437,14 +459,16 @@ void StaffSubMenu(Selecao &s) {
         }
         case 6:
         {
-
+            for(auto x:staff_atual)cout<<x;
             break;
         }
         case 7:
         {
+            for(auto l:staff_antigo)cout<<l;
             break;
         }
     }
+}
 }
 
 void CustosSubMenu(Selecao &s){
