@@ -86,6 +86,8 @@ class Selecionador :public Staff{
 public:
     Selecionador(string nm, string dNas, string fnc, int s,string cntr, int titulosGanhos, vector<tuple<string,Date>> sel);
     void getInfo();
+    int getNtitulos(){return titulosGanhos;};
+    void addTituloSelecionador();
     void setSelecoes(string cmp, Date data);
     friend ostream& operator<<(ostream& out, const Selecionador* sl1);
     bool operator<(const Selecionador &sl1) const;

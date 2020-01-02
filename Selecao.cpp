@@ -295,9 +295,15 @@ int Selecao::ReadFile(string PersonsFile, string JogosFile, string Convocatorias
 			{
 				Date date2 = Date(line);
 				new_convocatoria->setEndingDate(date2);
-				line_read = 0;
+				line_read++;
 				break;
 			}
+            case 8:
+            {
+                new_convocatoria->setEstado(line);
+                line_read = 0;
+                break;
+            }
 			}
 		}
 	}
@@ -719,11 +725,11 @@ void Selecao::addtoConvocatoria(string id_conv, string id_player){
 		throw ConvocatoriaInexistente(id_conv);
 }
 
-void Selecao::showAllSelecionadores() const {
+void Selecao::showAllSelecionadoresC() const {
     BSTItrIn<Selecionador>it(TodosSelecionadores);
     while(!it.isAtEnd()){
-        it.retrieve().getInfo();
         cout << endl << "------------";
+        it.retrieve().getInfo();
         it.advance();
     }
 }
@@ -792,8 +798,16 @@ void Selecao::MakeConvocatoria() {
             it1.advance();
         }
     }while(!selecionador_exists);
-    c1->setEstado("A decorrer");
+    string estado;
+    do {
+        cout << "Insira o estado da convocatoria ('Ganho', 'Perdido' ou 'A decorrer'): " << endl;
+        getline(cin, estado);
+    }while(estado != "Ganho" || estado != "Perdido" || estado != "A decorrer");
+    c1->setEstado(estado);
     campeonatos.push_back(c1);
+    if (estado=="Ganho"){
+        getSelecionador(seleci)->addTituloSelecionador();
+    }
 
     int counter=0;
     do{
@@ -814,3 +828,81 @@ void Selecao::MakeConvocatoria() {
     cout << "NOTA: Para inserir jogos na convocatoria aceda ao menu jogos (depois de terem ocorrido)!"<<endl;
 }
 
+void Selecao::AddJogotoConvocatoria(string id_conv){
+    string nome, cidade, pais, estadio;
+    bool convocatoria_existe=false;
+    for (auto &convocatoria: campeonatos){
+        if(convocatoria->getId()==id_conv){
+            convocatoria_existe=true;
+        }
+    }
+    if(!convocatoria_existe)
+        throw ConvocatoriaInexistente(id_conv);
+
+    Jogo *new_jogo;
+    new_jogo->setIdConv(id_conv);
+    cout << "Insira o nome do jogo (ex. PORxESP): " << endl;
+    getline(cin,nome);
+    cout << "Insira a cidade: " << endl;
+    getline(cin,cidade);
+    cout << "Insira o Pais: " << endl;
+    getline(cin,pais);
+    cout << "Insira o estadio: " << endl;
+    getline(cin,estadio);
+
+
+    int counter=0;
+    do{
+        string PlayerN;
+        cout << "Insira o numero dos 5 jogadores convocados que jogaram: " << endl;
+        try {
+            for(auto &j : getConvocatoria(id_conv)->getJogadores()){
+                cout << j << endl;
+            }
+            bool jogador_existe=false;
+            getline(cin, PlayerN);
+            for(auto &j : getConvocatoria(id_conv)->getJogadores()){
+                if (j->getNumero()==PlayerN) {
+                    jogador_existe=true;
+                    new_jogo->addJogadorConvocado(j);
+                }
+            }
+            if(!jogador_existe)
+                throw JogadorInexistente(PlayerN);
+        }catch(JogadorInexistente(&Ji)){
+            cout << "Jogador Inexistente"<< endl;
+            continue;
+        }
+        counter++;
+    }while(counter<5);
+}
+
+void Selecao::showAllSelecionadoresD() const {
+    BSTItrIn<Selecionador>it(TodosSelecionadores);
+    vector<Selecionador>tmp;
+    while(!it.isAtEnd()){
+        tmp.push_back(it.retrieve());
+        it.advance();
+    }
+    reverse(tmp.begin(),tmp.end());
+    for (auto &j: tmp) {
+        j.getInfo();
+        cout << endl << "------------";
+    }
+}
+
+void Selecao::showAllSelecionadoresN(int n) const {
+    BSTItrIn<Selecionador>it(TodosSelecionadores);
+    bool exist=false;
+    while(!it.isAtEnd()){
+        if(it.retrieve().getNtitulos() >= n) {
+            it.retrieve().getInfo();
+            cout << endl << "------------";
+            exist=true;
+        }
+        it.advance();
+    }
+    if(!exist){
+        cout << "Nao existem Selecionadores com esse numero minimo de titulos!" << endl;
+    }
+}

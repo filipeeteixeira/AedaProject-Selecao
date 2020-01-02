@@ -116,8 +116,11 @@ public:
  */
     void modifyStaff(Staff st);
 
-	void showAllSelecionadores()const;
+	void showAllSelecionadoresC()const;
 
+	void showAllSelecionadoresD()const;
+
+	void showAllSelecionadoresN(int n)const;
 
     /** @brief * Shows all national costs
 */
@@ -154,6 +157,8 @@ public:
  * @param id_player is the player's number
 */
 	void addtoConvocatoria(string id_conv, string id_player);
+
+    void AddJogotoConvocatoria(string id_conv);
 
     /** @brief * Adds a a player injury to a chosen competition
 * @param id_conv is the competition's id
@@ -223,5 +228,6 @@ public:
 */
 
 	Selecionador* getSelecionador(string nome) const;
+
 };
 

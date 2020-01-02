@@ -50,3 +50,7 @@ void Selecionador::setSelecoes(string cmp,Date dataI) {
     this->selecoes.push_back(tuple<string,Date>(cmp,dataI));
 }
 
+void Selecionador::addTituloSelecionador() {
+    this->titulosGanhos++;
+}
+

@@ -137,6 +137,7 @@ void ConvocatoriasSubMenu(Selecao &s) {
 void JogosSubMenu(Selecao &s) {
     cout << "Enter your choice and press return: " << endl;
     cout << " [1] Ver Todas os Jogos de uma Convocatoria a escolha\n";
+    cout << " [2] Adicionar Jogos a uma Convocatoria\n";
     cout << endl << " [0] EXIT.\n" << endl;
     switch (askOption()) {
         case 0:
@@ -147,6 +148,20 @@ void JogosSubMenu(Selecao &s) {
                 string id = AskConvocatoriaProcedure();
                 try {
                     s.showAllGames(id);
+                    break;
+                }
+                catch (ConvocatoriaInexistente & Ci) {
+                    cout << "A convocatoria com o id:  " << Ci.getId() << " nao existe!" << endl;
+                }
+            } while (1);
+            break;
+        }
+        case 2:
+        {
+            do {
+                string id = AskConvocatoriaProcedure();
+                try {
+                    s.AddJogotoConvocatoria(id);
                     break;
                 }
                 catch (ConvocatoriaInexistente & Ci) {
@@ -401,20 +416,21 @@ void StaffSubMenu(Selecao &s) {
     string nome;
 
     for(auto x:s.getAllConvocatorias()) {//ver se a convocatoria esta a decorrer,depois verificar quais os staffs de la
-   if(DateInRange(x->getDataInicio().getDay(), x->getDataInicio().getMonth(), x->getDataInicio().getYear(),
-                  x->getDataFim().getDay(), x->getDataFim().getMonth(), x->getDataFim().getYear())){
+        if (DateInRange(x->getDataInicio().getDay(), x->getDataInicio().getMonth(), x->getDataInicio().getYear(),
+                        x->getDataFim().getDay(), x->getDataFim().getMonth(), x->getDataFim().getYear())) {
 
-                        //push_back no staff atual,e eliminar do staff antigo  no caso de pertencer a convocatoria atual
-                        for (auto m:x->getStaffConvocado()) {//ve quais os staff da convocatoria atual
-                            m.SetContrato("atual");
-                            staff_atual.push_back(m);
-                            s.modifyStaff(m);
-                            nome = m.getNome();
+            //push_back no staff atual,e eliminar do staff antigo  no caso de pertencer a convocatoria atual
+            for (auto m:x->getStaffConvocado()) {//ve quais os staff da convocatoria atual
+                m.SetContrato("atual");
+                staff_atual.push_back(m);
+                s.modifyStaff(m);
+                nome = m.getNome();
 
-                        }
-                        for (int i = 0; i < staff_antigo.size(); i++)
-                            if (staff_antigo[i].getNome() == nome)staff_antigo.erase(staff_antigo.begin() + i);
-                    }
+            }
+            for (int i = 0; i < staff_antigo.size(); i++)
+                if (staff_antigo[i].getNome() == nome)staff_antigo.erase(staff_antigo.begin() + i);
+        }
+    }
 
 
    switch (askOption()) {
@@ -454,7 +470,7 @@ void StaffSubMenu(Selecao &s) {
         }
         case 5:
         {
-            s.showAllSelecionadores();
+            SelecionadoresSubMenu(s);
             break;
         }
         case 6:
@@ -469,7 +485,48 @@ void StaffSubMenu(Selecao &s) {
         }
     }
 }
+
+void SelecionadoresSubMenu(Selecao &s){
+    cout << "Enter your choice and press return: " << endl;
+    cout << " [1] Ver Selecionadores (ordem CRESCENTE de titulos)\n";
+    cout << " [2] Ver Selecionadores (ordem DECRESCENTE de titulos) \n";
+    cout << " [3] Ver Selecionadores com mais de n titulos \n";
+    cout << endl << " [0] EXIT.\n" << endl;
+    switch (askOption()) {
+        case 0:
+            return;
+        case 1:
+        {
+            s.showAllSelecionadoresC();
+            break;
+        }
+        case 2:
+        {
+            s.showAllSelecionadoresD();
+            break;
+        }
+        case 3:
+        {
+            bool failed=false;
+            int Ntitulos;
+            do {
+                cout << "Insira o numero minimo de titulos: " << endl;
+                cin >> Ntitulos;
+                if (cin.fail()) {
+                    cin.clear();
+                    failed=true;
+                }
+                cin.ignore();
+                if (!failed){
+                    s.showAllSelecionadoresN(Ntitulos);
+                }
+            }while(failed);
+            break;
+        }
+    }
 }
+
+
 
 void CustosSubMenu(Selecao &s){
     cout << "Enter your choice and press return: " << endl;
@@ -492,7 +549,6 @@ void CustosSubMenu(Selecao &s){
                     cout << "A convocatoria com o id:  " << Ci.getId() << " nao existe!" << endl;
                 }
             } while (1);
-            break;
         }
         case 2:
         {
@@ -504,7 +560,7 @@ void CustosSubMenu(Selecao &s){
             do {
                 string id_conv = AskConvocatoriaProcedure();
                 string id_player = AskPlayerProcedure();
-                
+
                 try {
 					JogadorSelecao* j = s.GetPlayerConvocatoria(id_player,id_conv);
                     s.ShowConvocatoriaPlayerCost(id_conv,j);

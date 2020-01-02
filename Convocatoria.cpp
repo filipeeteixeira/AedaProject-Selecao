@@ -40,6 +40,7 @@ void Convocatoria::getInfo() const {
     cout << "Data de inicio: " << data_inicio << endl;
     cout << "Data de fim: " << data_fim << endl;
     cout << "Selecionador: " << SelecionadorConvocado->getNome() << endl;
+    cout << "Estado: " << estado << endl;
     cout << "Jogos(" << campeonato.size() << "):\n";
     for (auto &x :campeonato){
 		cout << x << endl;
