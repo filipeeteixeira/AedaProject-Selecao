@@ -160,6 +160,7 @@ void JogosSubMenu(Selecao &s) {
         {
             do {
                 string id = AskConvocatoriaProcedure();
+                cin.ignore();
                 try {
                     s.AddJogotoConvocatoria(id);
                     break;

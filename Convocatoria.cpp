@@ -341,6 +341,14 @@ void Convocatoria::setEstado(string estado) {
     this->estado=estado;
 }
 
+string Convocatoria::getEstado() const {
+    return estado;
+}
+
+Selecionador* Convocatoria::getSelecionador() const {
+    return SelecionadorConvocado;
+}
+
 void swapPlayer(JogadorSelecao** xp, JogadorSelecao** yp)
 {
 	JogadorSelecao* temp = *xp;

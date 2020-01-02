@@ -394,6 +394,8 @@ int Selecao::WriteFile(string PersonsFile, string JogosFile, string Convocatoria
 			outfile3 << x->getJogadores()[i]->getNumero() << ";";
 		}
 
+		outfile3 << x->getSelecionador()->getNome() << endl;
+
 		for (size_t i = 0; i < x->getStaffConvocado().size(); i++) { //escreve o nome do staff
 			if (i == x->getStaffConvocado().size() - 1) {
 				outfile3 << x->getStaffConvocado()[i].getNome() << endl;
@@ -403,6 +405,7 @@ int Selecao::WriteFile(string PersonsFile, string JogosFile, string Convocatoria
 		}
 		outfile3 << x->getDataInicio() << endl;
 		outfile3 << x->getDataFim() << endl;
+		outfile3 << x->getEstado() << endl;
 		outfile3 << "::::::::::::" << endl;
 	}
 	outfile3.close();
@@ -831,25 +834,30 @@ void Selecao::MakeConvocatoria() {
 void Selecao::AddJogotoConvocatoria(string id_conv){
     string nome, cidade, pais, estadio;
     bool convocatoria_existe=false;
+    Convocatoria *convocatoriaToAdd;
     for (auto &convocatoria: campeonatos){
         if(convocatoria->getId()==id_conv){
             convocatoria_existe=true;
+            convocatoriaToAdd=convocatoria;
         }
     }
     if(!convocatoria_existe)
         throw ConvocatoriaInexistente(id_conv);
 
-    Jogo *new_jogo;
+    Jogo *new_jogo= new Jogo("","","","","");
     new_jogo->setIdConv(id_conv);
     cout << "Insira o nome do jogo (ex. PORxESP): " << endl;
     getline(cin,nome);
+    new_jogo->setNome(nome);
     cout << "Insira a cidade: " << endl;
     getline(cin,cidade);
+    new_jogo->setCidade(cidade);
     cout << "Insira o Pais: " << endl;
     getline(cin,pais);
+    new_jogo->setPais(pais);
     cout << "Insira o estadio: " << endl;
     getline(cin,estadio);
-
+    new_jogo->setEstadio(estadio);
 
     int counter=0;
     do{
@@ -875,6 +883,7 @@ void Selecao::AddJogotoConvocatoria(string id_conv){
         }
         counter++;
     }while(counter<5);
+    convocatoriaToAdd->addJogo(new_jogo);
 }
 
 void Selecao::showAllSelecionadoresD() const {

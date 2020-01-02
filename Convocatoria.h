@@ -83,6 +83,9 @@ public:
 */
 	double getPlayersCost() const;
 
+	string getEstado() const;
+
+	Selecionador* getSelecionador() const;
 
     /** @brief * Returns the cost of all the staff
 * @return total cost of the competition's  staff
