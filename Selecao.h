@@ -39,11 +39,17 @@ class Selecao {
 	//vector<Staff*> EquipaTecnica;
 	BST<Selecionador>TodosSelecionadores;
 
+    vector<Staff> staff_atual;
+    vector<Staff> staff_antigo;
+
 public:
     /** @brief * National Team empty constructor
 */
 
 	Selecao();
+
+
+    void updateStaff();
 
 
     /** @brief * Reads the necessary files to populate the program
@@ -168,6 +174,10 @@ public:
     void addLesaoConvocatoria(string id_conv,string id_player,string day);
 
     void MakeConvocatoria();
+
+    vector<Staff>GetStaffAtual();
+
+    vector<Staff>GetStaffAntigo();
 
 
     /** @brief * Gets a pointer to a player with the given number

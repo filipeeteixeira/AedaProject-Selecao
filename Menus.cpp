@@ -19,7 +19,7 @@ void BegginingMenu(Selecao &s) {
 		cout << endl << " [0] EXIT Program.\n";
 		switch (askOption()) {
 			case 0:
-				//s.WriteFile("..\\Populacao.txt", "..\\Jogos.txt", "..\\Convocatorias.txt");
+				s.WriteFile("..\\Populacao.txt", "..\\Jogos.txt", "..\\Convocatorias.txt");
 				exit(1);
 			case 1:
 				ConvocatoriasSubMenu(s);
@@ -56,6 +56,7 @@ void ConvocatoriasSubMenu(Selecao &s) {
         case 1:
         {
             s.MakeConvocatoria();
+            s.updateStaff();
             break;
         }
 		case 2:
@@ -136,7 +137,7 @@ void ConvocatoriasSubMenu(Selecao &s) {
 
 void JogosSubMenu(Selecao &s) {
     cout << "Enter your choice and press return: " << endl;
-    cout << " [1] Ver Todas os Jogos de uma Convocatoria a escolha\n";
+    cout << " [1] Ver todos os Jogos de uma Convocatoria a escolha\n";
     cout << " [2] Adicionar Jogos a uma Convocatoria\n";
     cout << endl << " [0] EXIT.\n" << endl;
     switch (askOption()) {
@@ -151,7 +152,7 @@ void JogosSubMenu(Selecao &s) {
                     break;
                 }
                 catch (ConvocatoriaInexistente & Ci) {
-                    cout << "A convocatoria com o id:  " << Ci.getId() << " nao existe!" << endl;
+                    cout << "A convocatoria com o id:  " << Ci.getId() << " nao existe ou ainda nao tem jogos!" << endl;
                 }
             } while (1);
             break;
@@ -280,7 +281,7 @@ void JogadoresSubMenu(Selecao &s) {
 					break;
 				}
 				catch (JogadorInexistente & Ji) {
-					cout << "O Jogador numero " << Ji.getNum() << " nao existe!" << endl;
+					cout << "O Jogador numero " << Ji.getNum() << " e invalido!" << endl;
 				}
 				catch (ConvocatoriaInexistente & Ci) {
 					cout << "O Campeonato numero " << Ci.getId() << " nao existe!" << endl;
@@ -411,28 +412,6 @@ void StaffSubMenu(Selecao &s) {
     cout << " [6] Ver Staff atual\n";
     cout << " [7] Ver staff antigo\n";
     cout << endl << " [0] EXIT Menu.\n" << endl;
-    vector<Staff> staff_atual;
-    vector<Staff> staff_antigo;
-    staff_antigo=s.getAllStaff();
-    string nome;
-
-    for(auto x:s.getAllConvocatorias()) {//ver se a convocatoria esta a decorrer,depois verificar quais os staffs de la
-        if (DateInRange(x->getDataInicio().getDay(), x->getDataInicio().getMonth(), x->getDataInicio().getYear(),
-                        x->getDataFim().getDay(), x->getDataFim().getMonth(), x->getDataFim().getYear())) {
-
-            //push_back no staff atual,e eliminar do staff antigo  no caso de pertencer a convocatoria atual
-            for (auto m:x->getStaffConvocado()) {//ve quais os staff da convocatoria atual
-                m.SetContrato("atual");
-                staff_atual.push_back(m);
-                s.modifyStaff(m);
-                nome = m.getNome();
-
-            }
-            for (int i = 0; i < staff_antigo.size(); i++)
-                if (staff_antigo[i].getNome() == nome)staff_antigo.erase(staff_antigo.begin() + i);
-        }
-    }
-
 
    switch (askOption()) {
         case 0:
@@ -476,12 +455,12 @@ void StaffSubMenu(Selecao &s) {
         }
         case 6:
         {
-            for(auto x:staff_atual)cout<<x;
+            for(auto x:s.GetStaffAtual())cout<<x << endl;
             break;
         }
         case 7:
         {
-            for(auto l:staff_antigo)cout<<l;
+            for(auto l:s.GetStaffAntigo())cout<<l << endl;
             break;
         }
     }

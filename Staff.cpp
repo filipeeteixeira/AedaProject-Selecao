@@ -17,7 +17,6 @@ ostream& operator<<(ostream& out,const Staff & stf)
 	return out;
 }
 
-
 Selecionador::Selecionador(string nm, string dNas, string fnc, int s,string cntr, int tG, vector<tuple<string, Date>> sel):Staff( nm, dNas, fnc, s,cntr) {
     this->titulosGanhos=tG;
     this->selecoes=sel;

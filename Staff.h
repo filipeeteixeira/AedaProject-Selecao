@@ -68,6 +68,8 @@ public:
   *@param c is the new state of contract
 */
 
+
+
 	friend ostream& operator<<(ostream& out, const Staff& stf);
 
 /** @brief * Prints staff in a friendly way
@@ -87,6 +89,7 @@ public:
     Selecionador(string nm, string dNas, string fnc, int s,string cntr, int titulosGanhos, vector<tuple<string,Date>> sel);
     void getInfo();
     int getNtitulos(){return titulosGanhos;};
+    vector<tuple<string,Date>> getSelecoes(){return selecoes;};
     void addTituloSelecionador();
     void setSelecoes(string cmp, Date data);
     friend ostream& operator<<(ostream& out, const Selecionador* sl1);

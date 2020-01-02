@@ -94,11 +94,21 @@ Lucilio Batista;Carlos Ramos
 Jogador Selecao;6;0;43;60; ;90
 Jogador Selecao;1;1;50;80; ;76
 Jogador Selecao;18;0;51;76; ;90
-Jogador Selecao;23;1;34;89;A;90
 Jogador Selecao;10;0;56;65; ;90
 Jogador;9
 Jogador;11
 Jogador;17
 Jogador;2
 Jogador;5
+::::::::::::
+PORxESP
+3
+Madrid
+Espanha
+Santiago Bernabeu
+Jogador Selecao;1;0;0;0;;0
+Jogador Selecao;18;0;0;0;;0
+Jogador Selecao;3;0;0;0;;0
+Jogador Selecao;6;0;0;0;;0
+Jogador Selecao;7;0;0;0;;0
 ::::::::::::

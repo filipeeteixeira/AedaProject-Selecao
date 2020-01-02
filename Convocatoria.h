@@ -142,6 +142,8 @@ public:
 */
 	void setTipoCampeonato(string tc);
 
+	void setStaff(vector<Staff> vs);
+
 
     /** @brief * Sets competition's id
    * @param id is the competition's id

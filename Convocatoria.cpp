@@ -349,6 +349,10 @@ Selecionador* Convocatoria::getSelecionador() const {
     return SelecionadorConvocado;
 }
 
+void Convocatoria::setStaff(vector<Staff> vs) {
+    staffConvocado=vs;
+}
+
 void swapPlayer(JogadorSelecao** xp, JogadorSelecao** yp)
 {
 	JogadorSelecao* temp = *xp;

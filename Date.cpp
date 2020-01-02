@@ -105,10 +105,5 @@ bool DateInRange( int startDay, int startMonth, int startYear, int endDay, int e
     int data_inicio_convocatoria = (startYear * 10000) + (startMonth * 100) + startDay;
     int data_fim_convocatoria = (endYear * 10000) + (endMonth * 100) + endDay;
 
-    if (data_atual >= data_inicio_convocatoria && data_atual <= data_fim_convocatoria){
-        return true;
-    }
-    else{
-        return false;
-    }
+    return data_atual <= data_fim_convocatoria;
 }
