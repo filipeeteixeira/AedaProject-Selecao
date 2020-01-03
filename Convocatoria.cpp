@@ -115,34 +115,38 @@ void Convocatoria::showPlayerStatistics(string num) {
 	int goalsT = 0, minsT = 0, passesT = 0;
     double kmsT = 0.0;
     vector<string> cartoesT = {};
-    for (auto &x:campeonato){
-        cout << "Jogo n " << i << " - " << x << endl;
-        x->showPlayerGameStats(num,passesT,goalsT,minsT,kmsT,cartoesT);
-        cout << endl;
-        i++;
-    }
-	cout << "\n-----------------------\n";
-    cout << "Totais do Campeonato\n";
-	cout << "-----------------------\n";
-    cout << "Golos Marcados: " << goalsT << " Media: " << (double)goalsT/this->getNumJogos() << endl;
-    cout << "Minutos Jogados: " << minsT << " Media: " << (double)minsT/this->getNumJogos() << endl;
-	cout << "Passes efetuados: " << passesT << "Media: " << (double)passesT / this->getNumJogos() << endl;
-    cout << "Kms Percorridos: " << kmsT << " Media: " << kmsT/this->getNumJogos() << endl;
-    cout << "Cartoes\n";
-    int numAmarelo = 0,numVermelhoDireto = 0,numVermelhoAcumulado = 0;
-    for (auto &x:cartoesT)
-    {
-		if (x == "A")
-			numAmarelo++;
-        else if(x == "V")
-            numVermelhoDireto++;
-        else if (x == "AA"){
-            numVermelhoAcumulado++;
-            numAmarelo = numAmarelo + 2;
+        for (auto &x:campeonato) {
+            cout << "Jogo n " << i << " - " << x << endl;
+            x->showPlayerGameStats(num, passesT, goalsT, minsT, kmsT, cartoesT);
+            cout << endl;
+            i++;
         }
-    }
-    cout << "Amarelo: " << numAmarelo << endl << "Vermelho Direto: " << numVermelhoDireto << endl << "Vermelho por Acumulacao de Amarelos: " << numVermelhoAcumulado << endl;
-    cout <<"Total de cartoes: " << numAmarelo + numVermelhoAcumulado + numVermelhoDireto << " Media: " << (numAmarelo + numVermelhoAcumulado + numVermelhoDireto)/this->getNumJogos() << endl << endl;
+        cout << "\n-----------------------\n";
+        cout << "Totais do Campeonato\n";
+        cout << "-----------------------\n";
+        cout << "Golos Marcados: " << goalsT << " Media: " << (double) goalsT / this->getNumJogos() << endl;
+        cout << "Minutos Jogados: " << minsT << " Media: " << (double) minsT / this->getNumJogos() << endl;
+        cout << "Passes efetuados: " << passesT << "Media: " << (double) passesT / this->getNumJogos() << endl;
+        cout << "Kms Percorridos: " << kmsT << " Media: " << kmsT / this->getNumJogos() << endl;
+        cout << "Cartoes\n";
+        int numAmarelo = 0, numVermelhoDireto = 0, numVermelhoAcumulado = 0;
+        for (auto &x:cartoesT) {
+            if (x == "A")
+                numAmarelo++;
+            else if (x == "V")
+                numVermelhoDireto++;
+            else if (x == "AA") {
+                numVermelhoAcumulado++;
+                numAmarelo = numAmarelo + 2;
+            }
+        }
+        cout << "Amarelo: " << numAmarelo << endl << "Vermelho Direto: " << numVermelhoDireto << endl
+             << "Vermelho por Acumulacao de Amarelos: " << numVermelhoAcumulado << endl;
+        cout << "Total de cartoes: " << numAmarelo + numVermelhoAcumulado + numVermelhoDireto;
+        if (this->getNumJogos()!=0)
+            cout << " Media: " << (numAmarelo + numVermelhoAcumulado + numVermelhoDireto) / this->getNumJogos() << endl << endl;
+        else
+            cout << "Media: " << "0" << endl << endl;
 }
 
 void Convocatoria::setTipoCampeonato(string tc)
