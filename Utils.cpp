@@ -75,6 +75,12 @@ string AskDateProcedure() {
 	cout << "Insira o dia de lesao: "; cin >> day;
     return day;
 }
+string AskProductProcedure(){
+    string nome;
+    cout << "Insira o produto que pretende comprar: ";
+    getline(cin, nome);
+    return nome;
+}
 
 int getCampNum(vector<Convocatoria*> c) {
 	cout << "A que campeonato pretende aceder?\n";

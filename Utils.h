@@ -46,4 +46,6 @@ string AskDateProcedure();
 *@return Position of the chosen competition
 */
 
+string AskProductProcedure();
+
 int getCampNum(vector<Convocatoria*> c);

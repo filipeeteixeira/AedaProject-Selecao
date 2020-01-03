@@ -15,7 +15,7 @@ int Selecao::ReadFile(string PersonsFile, string JogosFile, string Convocatorias
 		return 1;
 	}
 
-	string type, name, posicao, clube, numero, peso, altura, dataN, passe, salario, funcao,contracto;
+	string type, name, posicao, clube, numero, peso, altura, dataN, passe, salario, funcao,contracto,tipo1,tipo2,tipo3,rep;
 	string nTitulos, local, dataInicioC,tmp;
 	vector<tuple<string,Date>>titulos;
 
@@ -79,6 +79,15 @@ int Selecao::ReadFile(string PersonsFile, string JogosFile, string Convocatorias
                 stafftotal.insert(new_staff);
             }
 		}
+        else if (type == "Fornecedor"){
+            getline(infile1, name, ';');
+            getline(infile1, rep, ';');
+            getline(infile1, tipo1, ';');
+            getline(infile1, tipo2, ';');
+            getline(infile1, tipo3);
+            Fornecedor newFornecedor = Fornecedor(name,stoi(rep),{tipo1,tipo2,tipo3});
+            fornecedores.push(newFornecedor);
+        }
 	}
 	infile1.close();
 	/*---------------------------------------------*/
@@ -1005,27 +1014,57 @@ vector<Staff> Selecao::GetStaffAntigo() {
     return staff_antigo;
 }
 
-void Selecao::atualizarEstadoConvocatoria(string estado, string id_conv){
-    bool exists=false;
-    for (auto &conv : campeonatos){
-        if (conv->getId()==id_conv ){
-            if (!(getCurrentDate()<conv->getDataFim())){
-                cout << "Impossivel alterar estado de uma convocatoria que ja acabou!"<< endl;
+void Selecao::atualizarEstadoConvocatoria(string estado, string id_conv) {
+    bool exists = false;
+    for (auto &conv : campeonatos) {
+        if (conv->getId() == id_conv) {
+            if (!(getCurrentDate() < conv->getDataFim())) {
+                cout << "Impossivel alterar estado de uma convocatoria que ja acabou!" << endl;
                 return;
             }
             conv->setEstado(estado);
-            exists=true;
-            if (estado =="Ganho"){
+            exists = true;
+            if (estado == "Ganho") {
                 conv->getSelecionador()->addTituloSelecionador();
-            }
-            else if (estado =="Perdido" && conv->getSelecionador()->getNtitulos()>0){
+            } else if (estado == "Perdido" && conv->getSelecionador()->getNtitulos() > 0) {
                 conv->getSelecionador()->subTituloSelecionador();
             }
             return;
         }
     }
-    if(!exists){
+    if (!exists) {
         throw ConvocatoriaInexistente(id_conv);
     }
-
 }
+
+ void Selecao::buyProduct(string product, priority_queue<Fornecedor> &fornecedores){
+         vector<Fornecedor> finalQueue;
+         bool found = false;
+         while (!fornecedores.empty()) {
+             Fornecedor f = fornecedores.top();
+             if (f.stock(product) && found == false) {
+                 found = true;
+                 cout << "Compra de " << product << " efetuada no fornecedor " << f.getNome() << " com reputacao de "
+                      << f.getReputacao() << endl;
+                 int rating = f.compra();
+                 f.setReputacao(f.getReputacao() + rating);
+                 finalQueue.push_back(f);
+             } else finalQueue.push_back(f);
+             fornecedores.pop();
+         }
+         for (auto &x: finalQueue)
+             fornecedores.push(x);
+}
+
+void Selecao::showAllFornecedores()  {
+    vector<Fornecedor> aux;
+    while (!fornecedores.empty()) {
+        Fornecedor f = fornecedores.top();
+        cout << f.getNome() << " " << f.getReputacao() << "\n";
+        aux.push_back(f);
+        fornecedores.pop();
+    }
+    for (auto &x: aux)
+        fornecedores.push(x);
+}
+

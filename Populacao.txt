@@ -27,3 +27,7 @@ Staff;Fernando Santos;Selecionador Nacional;10/10/1954;800;antigo(1)Qualificacao
 Staff;Jorge Rosario;Observador;18/07/1961;350;antigo
 Staff;Joao Costa;Treinador Assistente;23/06/1973;400;atual
 Staff;Ricardo Santos;Treinador Assistente;01/09/1981;410;atual
+Fornecedor;Decathlon;49;meias;camisolas;bolas
+Fornecedor;Sport Zone;50;camisolas;chuteiras;bracadeiras
+Fornecedor;MaxiFut;45;bolas;calcoes;chuteiras
+Fornecedor;Sports Direct;47;calcoes;meias;bracadeiras

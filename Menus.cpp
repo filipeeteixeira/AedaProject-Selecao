@@ -17,6 +17,7 @@ void BegginingMenu(Selecao &s) {
 		cout << " [3] Jogadores\n";
 		cout << " [4] Staff\n";
 		cout << " [5] Custos\n";
+        cout << " [6] Fornecedores\n";
 		cout << endl << " [0] EXIT Program.\n";
 		switch (askOption()) {
 			case 0:
@@ -36,6 +37,9 @@ void BegginingMenu(Selecao &s) {
 				break;
 			case 5:
 				CustosSubMenu(s);
+				break;
+		    case 6:
+		        FornecedoresSubMenu(s);
 		}
 	}
 }
@@ -575,6 +579,31 @@ void CustosSubMenu(Selecao &s){
 					cout << "O jogador com o numero:  " << Ji.getNum() << " nao existe nesta convocatoria!" << endl;
 				}
             } while (1);
+        }
+    }
+}
+
+void FornecedoresSubMenu(Selecao &s){
+    cout << "Enter your choice and press return: " << endl;
+    cout << " [1] Fazer compra de um produto\n";
+    cout << " [2] Ver Fornecedores existentes\n";
+    cout << endl << " [0] EXIT.\n" << endl;
+    switch (askOption()) {
+        case 0:
+            return;
+        case 1:
+        {
+            string product = AskProductProcedure();
+
+            s.buyProduct(product,s.fornecedores);
+            break;
+
+
+        }
+        case 2:
+        {
+            s.showAllFornecedores();
+            break;
         }
     }
 }

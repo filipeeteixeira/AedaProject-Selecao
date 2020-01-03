@@ -52,6 +52,9 @@ void AlterarStaffSubMenu(Selecao &s);
 
 void CustosSubMenu(Selecao &s);
 
+
+void FornecedoresSubMenu(Selecao &s);
+
 void SelecionadoresSubMenu(Selecao &s);
 
 /** @brief  Asks the user to chose an option(in numbers)

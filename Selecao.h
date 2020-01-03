@@ -10,6 +10,8 @@
 #include "BST.h"
 #include "Date.h"
 #include <unordered_set>
+#include "queue"
+#include "Fornecedor.h"
 
 struct staffhash
 {
@@ -27,9 +29,11 @@ struct staffeq{
     }
 };
 
+
 typedef unordered_set<Staff,staffhash,staffeq> tabHstaff;
 
 class Selecao {
+
     tabHstaff stafftotal;//possui a info do vetor equipa tecnica e do vetor staff convocado
 	vector<Convocatoria*> campeonatos; //vetor com as diferentes convocatorias da sele�ao
 	vector<JogadorSelecao*> TodosJogadores; //vetor com todos os jogadores da sele��o
@@ -45,6 +49,10 @@ class Selecao {
 public:
     /** @brief * National Team empty constructor
 */
+
+
+    priority_queue <Fornecedor> fornecedores;
+
 
 	Selecao();
 
@@ -239,6 +247,11 @@ public:
 */
 
 	Selecionador* getSelecionador(string nome) const;
+
+
+	void buyProduct(string product,priority_queue<Fornecedor> &fornecedores);
+
+	void showAllFornecedores() ;
 
 };
 
