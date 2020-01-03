@@ -6,6 +6,7 @@ void BegginingMenu(Selecao &s) {
 
 	while (1) {
 		cout << endl;
+		s.updateStaff(); //Depende da data por isso é atualizado sempre que o programa inicia
         cout << "Data:" << getCurrentDate() << endl;
 		cout << "-----------------\n";
 		cout << "Selecao Nacional" << endl;
@@ -44,11 +45,12 @@ void ConvocatoriasSubMenu(Selecao &s) {
     cout << "Data:" << getCurrentDate() << endl;
 	cout << "Enter your choice and press return: " << endl;
 	cout << " [1] Fazer Convocatoria\n";
-	cout << " [2] Ver Todas as Convocatorias\n";
-	cout << " [3] Ver convocatoria \n";
-    cout << " [4] Ver pessoal convocado a um dada convocatoria\n";
-    cout << " [5] Lesionar um jogador numa dada convocatoria\n";
-    cout << " [6] Ver os melhores jogadores de uma dada convocatoria\n";
+	cout << " [2] Atualizar estado de uma Convocatoria\n";
+	cout << " [3] Ver Todas as Convocatorias\n";
+	cout << " [4] Ver convocatoria \n";
+    cout << " [5] Ver pessoal convocado a um dada convocatoria\n";
+    cout << " [6] Lesionar um jogador numa dada convocatoria\n";
+    cout << " [7] Ver os melhores jogadores de uma dada convocatoria\n";
 	cout << endl << " [0] EXIT.\n" << endl;
 	switch (askOption()) {
 		case 0:
@@ -59,12 +61,32 @@ void ConvocatoriasSubMenu(Selecao &s) {
             s.updateStaff();
             break;
         }
-		case 2:
+        case 2:
+        {
+            string estado, id;
+            id = AskConvocatoriaProcedure();
+            do {
+                do {
+                    cout << "Insira o estado da convocatoria:";
+                    cin.ignore();
+                    getline(cin, estado);
+                } while (estado != "A decorrer" && estado != "Ganho" && estado != "Perdido");
+                try {
+                    s.atualizarEstadoConvocatoria(estado, id);
+                    s.updateStaff();
+                    break;
+                } catch (ConvocatoriaInexistente &Ci) {
+                    cout << "A convocatoria com o id:  " << Ci.getId() << " nao existe!" << endl;
+                }
+            }while(1);
+            break;
+        }
+		case 3:
 		{
 			s.showAllConvocatorias();
 			break;
 		}
-		case 3:
+		case 4:
 		{
 			do {
 				string id = AskConvocatoriaProcedure();
@@ -78,7 +100,7 @@ void ConvocatoriasSubMenu(Selecao &s) {
 			} while (1);
 			break;
 		}
-	    case 4:
+	    case 5:
         {
             do {
                 string id = AskConvocatoriaProcedure();
@@ -92,7 +114,7 @@ void ConvocatoriasSubMenu(Selecao &s) {
             } while (1);
             break;
         }
-	    case 5:
+	    case 6:
         {
             do {
 				try {
@@ -114,7 +136,7 @@ void ConvocatoriasSubMenu(Selecao &s) {
             break;
 
         }
-        case 6:
+        case 7:
         {
             do {
                 string id = AskConvocatoriaProcedure();

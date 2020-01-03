@@ -179,6 +179,7 @@ public:
 
     vector<Staff>GetStaffAntigo();
 
+    void atualizarEstadoConvocatoria(string estado, string id_conv);
 
     /** @brief * Gets a pointer to a player with the given number
 * @param numero is the player's number

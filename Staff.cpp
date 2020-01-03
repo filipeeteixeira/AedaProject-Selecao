@@ -53,3 +53,6 @@ void Selecionador::addTituloSelecionador() {
     this->titulosGanhos++;
 }
 
+void Selecionador::subTituloSelecionador() {
+    this->titulosGanhos--;
+}

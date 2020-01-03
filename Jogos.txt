@@ -101,14 +101,3 @@ Jogador;17
 Jogador;2
 Jogador;5
 ::::::::::::
-PORxESP
-3
-Madrid
-Espanha
-Santiago Bernabeu
-Jogador Selecao;1;0;0;0;;0
-Jogador Selecao;18;0;0;0;;0
-Jogador Selecao;3;0;0;0;;0
-Jogador Selecao;6;0;0;0;;0
-Jogador Selecao;7;0;0;0;;0
-::::::::::::

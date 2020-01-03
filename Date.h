@@ -51,7 +51,10 @@ public:
     */
   unsigned getYear() const;
 
-  // outhet methods */
+  bool operator==(const Date &d1) const;
+
+  bool operator<(const Date &d1) const;
+
     /** @brief * Prints date in a user friendly way
     *
     */
@@ -63,5 +66,3 @@ public:
 int DateValidation(string date);
 
 Date getCurrentDate();
-
-bool DateInRange( int startDay, int startMonth, int startYear, int endDay, int endMonth, int endYear);

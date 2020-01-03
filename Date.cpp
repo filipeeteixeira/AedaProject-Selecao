@@ -41,6 +41,16 @@ ostream& operator<<(ostream& out, const Date & date){
 	return out;
 }
 
+bool Date::operator<(const Date &d1) const {
+    int this_date = (getYear() * 10000) + (getMonth() * 100) + getDay();
+    int d1_date = (d1.getYear()*10000) + (d1.getMonth() * 100) + d1.getDay();
+    return this_date < d1_date;
+}
+
+bool Date::operator==(const Date &d1) const {
+    return getDay()== d1.getDay() && getMonth()==d1.getMonth() && getYear()==d1.getYear();
+}
+
 int DateValidation(string date){
 
     regex rx("(0?[1-9]|[12][0-9]|3[01])[/](0?[1-9]|1[0-2])[/](19[5-9][0-9]|20[0-4][0-9]|2050)");
@@ -100,10 +110,4 @@ Date getCurrentDate(){
     else if (mes=="Nov") mes ="11";
     return Date(dia+"/"+mes+"/"+ano);
 }
-bool DateInRange( int startDay, int startMonth, int startYear, int endDay, int endMonth, int endYear){
-    int data_atual = (getCurrentDate().getYear() * 10000) + (getCurrentDate().getMonth() * 100) + getCurrentDate().getDay();
-    int data_inicio_convocatoria = (startYear * 10000) + (startMonth * 100) + startDay;
-    int data_fim_convocatoria = (endYear * 10000) + (endMonth * 100) + endDay;
 
-    return data_atual <= data_fim_convocatoria;
-}

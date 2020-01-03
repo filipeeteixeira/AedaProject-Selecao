@@ -10,7 +10,7 @@ Jogador Selecao;Joao Felix;Medio;Atletico Madrid;4;76;1.76;10/06/1999;1100
 Jogador Selecao;Goncalo Guedes;Avancado;Valencia;17;80;1.79;29/06/1996;790
 Jogador Selecao;Joao Moutinho;Medio;Wolves;8;64;1.70;08/09/1986;890
 Jogador Selecao;William Carvalho;Avancado;Betis;14;82;1.85;07/04/1992;800
-Jogador Selecao;Joao Mario;Medio;Lokomotiv;10;73;1.79;109/01/1993;840
+Jogador Selecao;Joao Mario;Medio;Lokomotiv;10;73;1.79;19/01/1993;840
 Jogador Selecao;Jose Sa;Guarda-Redes;Olympiakos;21;80;1.92;10/01/1993;430
 Jogador Selecao;Danilo Pereira;Medio;FC Porto;18;79;1.81;11/07/1980;600
 Jogador Selecao;Pizzi;Medio;Benfica;28;66;1.72;06/11/1989;700
@@ -23,7 +23,7 @@ Jogador;Lewandowski Robert;Avancado;Bayern;10
 Jogador;Sergio Busquets;Medio;Barcelona;5
 Jogador;Cervi Franco;Medio;Benfica;17
 Staff;Ilidio Vale;Selecionador Nacional;13/12/1957;300;antigo(0)
-Staff;Fernando Santos;Selecionador Nacional;10/10/1954;800;antigo(1)Portugal;10/7/2019
+Staff;Fernando Santos;Selecionador Nacional;10/10/1954;800;antigo(1)Qualificacao Europa;7/10/2019
 Staff;Jorge Rosario;Observador;18/07/1961;350;antigo
 Staff;Joao Costa;Treinador Assistente;23/06/1973;400;atual
 Staff;Ricardo Santos;Treinador Assistente;01/09/1981;410;atual

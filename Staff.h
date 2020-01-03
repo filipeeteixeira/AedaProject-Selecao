@@ -91,6 +91,7 @@ public:
     int getNtitulos(){return titulosGanhos;};
     vector<tuple<string,Date>> getSelecoes(){return selecoes;};
     void addTituloSelecionador();
+    void subTituloSelecionador();
     void setSelecoes(string cmp, Date data);
     friend ostream& operator<<(ostream& out, const Selecionador* sl1);
     bool operator<(const Selecionador &sl1) const;

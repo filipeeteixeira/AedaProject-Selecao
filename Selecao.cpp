@@ -779,7 +779,7 @@ void Selecao::MakeConvocatoria() {
 
     bool id_exists=false;
     do {
-        cout << "Insira um id para a convcocatoria:";
+        cout << "Insira um id para a convocatoria:";
         getline(cin,id);
         for(auto &conv: campeonatos){
             if (conv->getId()==id) {
@@ -806,7 +806,7 @@ void Selecao::MakeConvocatoria() {
 
     bool selecionador_exists=false;
     do {
-        cout << "Insira o Nome do Selecionador Convocado:";
+        cout << "Insira o Nome do Selecionador Convocado:"<<endl;
         BSTItrIn<Selecionador > it(TodosSelecionadores);
         while (!it.isAtEnd()) {
             cout << it.retrieve().getNome() << endl;
@@ -843,16 +843,8 @@ void Selecao::MakeConvocatoria() {
     }while(!staff_exists || cntStaff<2);
     c1->setStaff(tmpStaff);
 
-    string estado;
-    do {
-        cout << "Insira o estado da convocatoria ('Ganho', 'Perdido' ou 'A decorrer'): " << endl;
-        getline(cin, estado);
-    }while(estado != "Ganho" && estado != "Perdido" && estado != "A decorrer");
-    c1->setEstado(estado);
+    c1->setEstado("A decorrer");
     campeonatos.push_back(c1);
-    if (estado=="Ganho"){
-        getSelecionador(seleci)->addTituloSelecionador();
-    }
 
     int counter=0;
     do{
@@ -871,6 +863,7 @@ void Selecao::MakeConvocatoria() {
         counter++;
     }while(counter<6);
     cout << "NOTA: Para inserir jogos na convocatoria aceda ao menu jogos (depois de terem ocorrido)!"<<endl;
+    cout << "Para alterar o estado ('A decorrer') da convocatoria aceda ao menu convocatorias!" << endl;
 }
 
 void Selecao::AddJogotoConvocatoria(string id_conv){
@@ -902,7 +895,7 @@ void Selecao::AddJogotoConvocatoria(string id_conv){
     new_jogo->setEstadio(estadio);
     int cntArb=0;
     do {
-        cout << "Insira o nome de um dos (2) arbitros do jogo e enter de seguida: " << endl;
+        cout << "Insira o nome de um dos (2) arbitros do jogo e ENTER de seguida: " << endl;
         getline(cin, estadio);
         cntArb++;
     }while(cntArb<2);
@@ -910,7 +903,7 @@ void Selecao::AddJogotoConvocatoria(string id_conv){
     int counter=0;
     do{
         string PlayerN;
-        cout << "Insira o numero de um dos (5) jogadores convocados que jogaram e enter de seguida: " << endl;
+        cout << "Insira o numero de um dos (5) jogadores convocados que jogaram e ENTER de seguida: " << endl;
         try {
             for(auto &j : getConvocatoria(id_conv)->getJogadores()){
                 cout << j << endl;
@@ -945,7 +938,7 @@ void Selecao::showAllSelecionadoresD() const {
     reverse(tmp.begin(),tmp.end());
     for (auto &j: tmp) {
         j.getInfo();
-        cout << endl << "------------";
+        cout << endl;
     }
 }
 
@@ -955,7 +948,7 @@ void Selecao::showAllSelecionadoresN(int n) const {
     while(!it.isAtEnd()){
         if(it.retrieve().getNtitulos() >= n) {
             it.retrieve().getInfo();
-            cout << endl << "------------";
+            cout << endl;
             exist=true;
         }
         it.advance();
@@ -967,8 +960,7 @@ void Selecao::showAllSelecionadoresN(int n) const {
 
 void Selecao::updateStaff() {
     for(auto x:getAllConvocatorias()) {//ver se a convocatoria esta a decorrer,depois verificar quais os staffs de la
-        if (DateInRange(x->getDataInicio().getDay(), x->getDataInicio().getMonth(), x->getDataInicio().getYear(),
-                        x->getDataFim().getDay(), x->getDataFim().getMonth(), x->getDataFim().getYear())) {
+        if (!(x->getDataFim()<getCurrentDate())) { //se a convocatoria ainda não acabou
 
             //push_back no staff atual,e eliminar do staff antigo  no caso de pertencer a convocatoria atual
             for (auto m:x->getStaffConvocado()) {//ve quais os staff da convocatoria atual
@@ -986,6 +978,22 @@ void Selecao::updateStaff() {
                 }
             }
         }
+        else{ //se a convocatoria ja acabou
+            for (auto m:x->getStaffConvocado()) {
+                m.SetContrato("antigo");
+                staff_antigo.push_back(m);
+                modifyStaff(m);
+                vector<Staff>::iterator it1= staff_atual.begin();
+                for (; it1 != staff_atual.end();) {
+                    if (it1->getNome() == m.getNome()) {
+                        it1 = staff_atual.erase(it1);
+                    }
+                    else{
+                        it1++;
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -997,4 +1005,27 @@ vector<Staff> Selecao::GetStaffAntigo() {
     return staff_antigo;
 }
 
+void Selecao::atualizarEstadoConvocatoria(string estado, string id_conv){
+    bool exists=false;
+    for (auto &conv : campeonatos){
+        if (conv->getId()==id_conv ){
+            if (!(getCurrentDate()<conv->getDataFim())){
+                cout << "Impossivel alterar estado de uma convocatoria que ja acabou!"<< endl;
+                return;
+            }
+            conv->setEstado(estado);
+            exists=true;
+            if (estado =="Ganho"){
+                conv->getSelecionador()->addTituloSelecionador();
+            }
+            else if (estado =="Perdido" && conv->getSelecionador()->getNtitulos()>0){
+                conv->getSelecionador()->subTituloSelecionador();
+            }
+            return;
+        }
+    }
+    if(!exists){
+        throw ConvocatoriaInexistente(id_conv);
+    }
 
+}
