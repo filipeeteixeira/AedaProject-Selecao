@@ -611,28 +611,34 @@ void FornecedoresSubMenu(Selecao &s){
         case 3:
         {
             Fornecedor f = AskFornecedorProcedure();
-            s.addFornecedor(f);
+            if (s.existeFornecedor(f.getNome()))
+                cout << "Ja existe um fornecedor com esse nome!" << endl;
+            else s.addFornecedor(f);
             break;
         }
         case 4:
         {
             string nome;
-            cout << "Que fornecedor pretende remover(nome)?" << endl;
             s.showAllFornecedores();
+            cout << "\nQue fornecedor pretende remover(nome)?" << endl;
             cout << endl;
             getline(cin,nome);
-            s.removeFornecedor(nome);
+            if (!s.existeFornecedor(nome))
+                cout << "Nao existe um fornecedor com esse nome!" << endl;
+            else s.removeFornecedor(nome);
             break;
         }
         case 5:
         {
             int rating;
             string nome;
-            cout << "Que fornecedor quer alterar?" << endl;
+            cout << "A que fornecedor pretende alterar o rating?" << endl;
+            s.showAllFornecedores();
             getline(cin,nome);
             cout << "Qual o novo rating do fornecedor?" << endl;
             cin >> rating;
             s.setFornecedorRating(nome,rating);
+            break;
         }
     }
 }
