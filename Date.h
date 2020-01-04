@@ -66,3 +66,6 @@ public:
 int DateValidation(string date);
 
 Date getCurrentDate();
+/** @brief * returns current date in the form of class date
+  *
+  */

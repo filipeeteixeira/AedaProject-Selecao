@@ -56,7 +56,9 @@ public:
 
     Selecao();
 
-
+    /** @brief * lists which staff has a recent and an old contract filling the respective vectors
+* @return  void
+*/
     void updateStaff();
 
 
@@ -126,6 +128,7 @@ public:
     void showAllStaff() const;
 
 /** @brief * Allows to modify the staff info;
+ *  @param st is the staff already modified that we want to insert in the hashtable;
  */
     void modifyStaff(Staff st);
 
@@ -239,11 +242,12 @@ public:
 */
     vector<JogadorSelecao *> getAllPlayers() const;
 
-    vector<Staff> getAllStaff() const;
-
     /** @brief * Gets a vector with  all staff
 * @return  vector with  all staffs
 */
+    vector<Staff> getAllStaff() const;
+
+
 
     Selecionador *getSelecionador(string nome) const;
 
