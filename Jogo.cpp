@@ -278,3 +278,7 @@ ostream& operator<<(ostream& out, Jogo* jogo)
     out << jogo->getCidade() << ", " << jogo->getPais() << " - " << jogo->getEstadio();
     return out;
 }
+
+void Jogo::setArbitros(vector<string>arbitros) {
+    this->equipa_arbitragem=arbitros;
+}
