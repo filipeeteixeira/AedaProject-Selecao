@@ -224,6 +224,10 @@ public:
 */
 	void setPais(string p);
 
+    /** @brief * Sets game's arbitros
+* @param arbitros is the vector of arbitros names
+*/
+	void setArbitros(vector<string>arbitros);
 
 
     /** @brief * Sets game's stadium

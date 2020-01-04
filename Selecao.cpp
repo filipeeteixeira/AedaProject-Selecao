@@ -887,7 +887,7 @@ void Selecao::MakeConvocatoria() {
 }
 
 void Selecao::AddJogotoConvocatoria(string id_conv){
-    string nome, cidade, pais, estadio;
+    string nome, cidade, pais, estadio,arbitro;
     bool convocatoria_existe=false;
     Convocatoria *convocatoriaToAdd;
     for (auto &convocatoria: campeonatos){
@@ -913,12 +913,16 @@ void Selecao::AddJogotoConvocatoria(string id_conv){
     cout << "Insira o estadio: " << endl;
     getline(cin,estadio);
     new_jogo->setEstadio(estadio);
+
     int cntArb=0;
+    vector<string>tmpArb;
     do {
         cout << "Insira o nome de um dos (2) arbitros do jogo e ENTER de seguida: " << endl;
-        getline(cin, estadio);
+        getline(cin, arbitro);
+        tmpArb.push_back(arbitro);
         cntArb++;
     }while(cntArb<2);
+    new_jogo->setArbitros(tmpArb);
 
     int counter=0;
     do{
@@ -980,12 +984,17 @@ void Selecao::showAllSelecionadoresN(int n) const {
 
 void Selecao::updateStaff() {
     for(auto x:getAllConvocatorias()) {//ver se a convocatoria esta a decorrer,depois verificar quais os staffs de la
-        if (!(x->getDataFim()<getCurrentDate())) { //se a convocatoria ainda não acabou
-
+        if (getCurrentDate()<x->getDataFim()) { //se a convocatoria ainda não acabou
             //push_back no staff atual,e eliminar do staff antigo  no caso de pertencer a convocatoria atual
             for (auto m:x->getStaffConvocado()) {//ve quais os staff da convocatoria atual
                 m.SetContrato("atual");
-                staff_atual.push_back(m);
+                bool is_in_staff_atual=false;
+                for (auto &s : staff_atual){
+                    if (s.getNome()==m.getNome())
+                        is_in_staff_atual=true;
+                }
+                if(!is_in_staff_atual)
+                    staff_atual.push_back(m);
                 modifyStaff(m);
                 vector<Staff>::iterator it= staff_antigo.begin();
                 for (; it != staff_antigo.end();) {
@@ -994,22 +1003,6 @@ void Selecao::updateStaff() {
                     }
                     else{
                         it++;
-                    }
-                }
-            }
-        }
-        else{ //se a convocatoria ja acabou
-            for (auto m:x->getStaffConvocado()) {
-                m.SetContrato("antigo");
-                staff_antigo.push_back(m);
-                modifyStaff(m);
-                vector<Staff>::iterator it1= staff_atual.begin();
-                for (; it1 != staff_atual.end();) {
-                    if (it1->getNome() == m.getNome()) {
-                        it1 = staff_atual.erase(it1);
-                    }
-                    else{
-                        it1++;
                     }
                 }
             }
