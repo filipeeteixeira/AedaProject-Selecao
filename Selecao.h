@@ -40,7 +40,6 @@ class Selecao {
     vector<Staff> TodosStaffs;
     vector<Jogador *> OutrosJogadores; //vetor com jogadores de equipas adversarias com que a sele�ao ja jogou
     vector<Jogo *> TodosJogos;
-    //vector<Staff*> EquipaTecnica;
     BST<Selecionador> TodosSelecionadores;
 
     vector<Staff> staff_atual;
@@ -56,7 +55,9 @@ public:
 
     Selecao();
 
-
+    /** @brief * lists which staff has a recent and an old contract filling the respective vectors
+* @return  void
+*/
     void updateStaff();
 
 
@@ -126,6 +127,7 @@ public:
     void showAllStaff() const;
 
 /** @brief * Allows to modify the staff info;
+ *  @param st is the staff already modified that we want to insert in the hashtable;
  */
     void modifyStaff(Staff st);
 
@@ -239,14 +241,16 @@ public:
 */
     vector<JogadorSelecao *> getAllPlayers() const;
 
-    vector<Staff> getAllStaff() const;
-
     /** @brief * Gets a vector with  all staff
 * @return  vector with  all staffs
 */
+    vector<Staff> getAllStaff() const;
 
+
+/** @brief * Gets a pointer to the selecionar of this Convocatoria
+* @return  pointer to Selecionador
+*/
     Selecionador *getSelecionador(string nome) const;
-
 
 
     /** @brief * Buys a product from the highest ranked supplier
