@@ -25,9 +25,9 @@ Jogador;Cervi Franco;Medio;Benfica;17
 Staff;Ilidio Vale;Selecionador Nacional;13/12/1957;300;antigo(0)
 Staff;Fernando Santos;Selecionador Nacional;10/10/1954;800;antigo(1)Qualificacao Europa;7/10/2019
 Staff;Jorge Rosario;Observador;18/07/1961;350;antigo
+Staff;Ricardo Santos;Treinador Assistente;01/09/1981;410;antigo
 Staff;Joao Costa;Treinador Assistente;23/06/1973;400;atual
-Staff;Ricardo Santos;Treinador Assistente;01/09/1981;410;atual
-Fornecedor;Decathlon;49;meias;camisolas;bolas
-Fornecedor;Sport Zone;50;camisolas;chuteiras;bracadeiras
-Fornecedor;MaxiFut;45;bolas;calcoes;chuteiras
-Fornecedor;Sports Direct;47;calcoes;meias;bracadeiras
+Fornecedor;Sport Zone;50;meias;chuteiras;bolas
+Fornecedor;Decathlon;48;camisolas;bracadeiras;bolas
+Fornecedor;MaxiFut;47;meias;camisolas;bracadeiras
+Fornecedor;Sports Direct;46;chuteiras;bolas;casacos

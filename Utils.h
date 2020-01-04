@@ -1,5 +1,6 @@
 #include <fstream>
 #include "Convocatoria.h"
+#include "Fornecedor.h"
 
 
 /** @brief * Asks for params to build player object and return a pointer to that same object
@@ -47,5 +48,7 @@ string AskDateProcedure();
 */
 
 string AskProductProcedure();
+
+Fornecedor AskFornecedorProcedure();
 
 int getCampNum(vector<Convocatoria*> c);

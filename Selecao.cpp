@@ -361,6 +361,17 @@ int Selecao::WriteFile(string PersonsFile, string JogosFile, string Convocatoria
 			<< x.getDNascimento() << ";" << x.getSalario() <<";"<<x.getContrato()<< endl;
 
 	}
+
+    while (!fornecedores.empty()) {
+        Fornecedor f = fornecedores.top();
+        outfile1 << "Fornecedor" << ";" << f.getNome() << ";" << to_string(f.getReputacao());
+        for (auto &x: f.getProdutos())
+            outfile1 << ";" << x;
+        fornecedores.pop();
+        outfile1 << endl;
+    }
+
+
 	outfile1.close();
 
 	/*-----------ESCREVER FICHEIRO DOS JOGOS------------*/
@@ -1052,19 +1063,61 @@ void Selecao::atualizarEstadoConvocatoria(string estado, string id_conv) {
              } else finalQueue.push_back(f);
              fornecedores.pop();
          }
+         if (!found)
+             cout << "O produto " << product << " nao existe em nenhum dos fornecedores.\n";
          for (auto &x: finalQueue)
              fornecedores.push(x);
+
 }
 
 void Selecao::showAllFornecedores()  {
     vector<Fornecedor> aux;
     while (!fornecedores.empty()) {
         Fornecedor f = fornecedores.top();
-        cout << f.getNome() << " " << f.getReputacao() << "\n";
+        cout << f.getNome() << "| Reputacao:" << f.getReputacao() << " | Produtos: ";
+        for (auto &x: f.getProdutos())
+            cout << x << " | ";
+        cout << endl;
         aux.push_back(f);
         fornecedores.pop();
     }
     for (auto &x: aux)
         fornecedores.push(x);
 }
-
+void Selecao::addFornecedor(Fornecedor f) {
+    vector<Fornecedor> aux;
+    while (!fornecedores.empty()) {
+        Fornecedor f = fornecedores.top();
+        aux.push_back(f);
+        fornecedores.pop();
+    }
+    aux.push_back(f);
+    for (auto &x: aux)
+        fornecedores.push(x);
+}
+void Selecao::removeFornecedor(string nome) {
+    vector<Fornecedor> aux;
+    while (!fornecedores.empty()) {
+        Fornecedor f = fornecedores.top();
+        if (f.getNome() != nome)
+            aux.push_back(f);
+        fornecedores.pop();
+    }
+    for (auto &x: aux)
+        fornecedores.push(x);
+}
+void Selecao::setFornecedorRating(string nome, int rating) {
+    vector<Fornecedor> aux;
+    while (!fornecedores.empty()) {
+        Fornecedor f = fornecedores.top();
+        if (f.getNome() != nome)
+            aux.push_back(f);
+        if (f.getNome() == nome) {
+            f.setReputacao(rating);
+            aux.push_back(f);
+        }
+        fornecedores.pop();
+    }
+    for (auto &x: aux)
+        fornecedores.push(x);
+}

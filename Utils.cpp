@@ -81,6 +81,24 @@ string AskProductProcedure(){
     getline(cin, nome);
     return nome;
 }
+Fornecedor AskFornecedorProcedure(){
+    string nome, rating,produto;
+    vector<string> products;
+    cout << "Nome: ";
+    getline(cin, nome);
+    cout << "Rating: ";
+    getline(cin, rating);
+    cout << "Produtos?('n' se nao houver mais a adicionar)" << endl;
+    do {
+        getline(cin, produto);
+        if (produto != "n")
+            products.push_back(produto);
+    } while (produto != "n");
+
+    Fornecedor f =Fornecedor(nome,stoi(rating),products);
+
+    return f;
+}
 
 int getCampNum(vector<Convocatoria*> c) {
 	cout << "A que campeonato pretende aceder?\n";

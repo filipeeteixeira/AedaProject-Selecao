@@ -587,6 +587,9 @@ void FornecedoresSubMenu(Selecao &s){
     cout << "Enter your choice and press return: " << endl;
     cout << " [1] Fazer compra de um produto\n";
     cout << " [2] Ver Fornecedores existentes\n";
+    cout << " [3] Adicionar Fornecedor\n";
+    cout << " [4] Remover Fornecedor\n";
+    cout << " [5] Alterar Fornecedor\n";
     cout << endl << " [0] EXIT.\n" << endl;
     switch (askOption()) {
         case 0:
@@ -604,6 +607,32 @@ void FornecedoresSubMenu(Selecao &s){
         {
             s.showAllFornecedores();
             break;
+        }
+        case 3:
+        {
+            Fornecedor f = AskFornecedorProcedure();
+            s.addFornecedor(f);
+            break;
+        }
+        case 4:
+        {
+            string nome;
+            cout << "Que fornecedor pretende remover(nome)?" << endl;
+            s.showAllFornecedores();
+            cout << endl;
+            getline(cin,nome);
+            s.removeFornecedor(nome);
+            break;
+        }
+        case 5:
+        {
+            int rating;
+            string nome;
+            cout << "Que fornecedor quer alterar?" << endl;
+            getline(cin,nome);
+            cout << "Qual o novo rating do fornecedor?" << endl;
+            cin >> rating;
+            s.setFornecedorRating(nome,rating);
         }
     }
 }
