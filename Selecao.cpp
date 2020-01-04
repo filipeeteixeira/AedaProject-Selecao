@@ -1114,3 +1114,18 @@ void Selecao::setFornecedorRating(string nome, int rating) {
     for (auto &x: aux)
         fornecedores.push(x);
 }
+
+bool Selecao::existeFornecedor(string nome) {
+    vector<Fornecedor> aux;
+    bool found=false;
+    while (!fornecedores.empty()) {
+        Fornecedor f = fornecedores.top();
+        if (nome == f.getNome())
+            found = true;
+        aux.push_back(f);
+        fornecedores.pop();
+    }
+    for (auto &x: aux)
+        fornecedores.push(x);
+    return found;
+}

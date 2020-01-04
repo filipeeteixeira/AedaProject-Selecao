@@ -283,6 +283,11 @@ public:
 */
     void setFornecedorRating(string nome,int rating);
 
+    /** @brief Checks if a given supplier already exists
+*@param nome is the name of the supplier
+     * @return true if it already exists,false otherwise
+*/
+    bool existeFornecedor(string nome);
 
 
 };
