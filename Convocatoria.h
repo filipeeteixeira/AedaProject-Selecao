@@ -67,9 +67,7 @@ public:
 */
 	void addStaffConvocado(Staff s);
 
-	void setEstado(string estado);
 
-	void setSelecionadorConvocado(Selecionador *s);
 
 
     /** @brief * Prints the competition info
@@ -83,8 +81,14 @@ public:
 */
 	double getPlayersCost() const;
 
+    /** @brief * Gets convocatoria current state
+* @return Convocatoria current state
+*/
 	string getEstado() const;
 
+    /** @brief * Gets a pointer to Selecionador of Convocatoria
+* @return pointer to Selecionador
+*/
 	Selecionador* getSelecionador() const;
 
     /** @brief * Returns the cost of all the staff
@@ -142,6 +146,9 @@ public:
 */
 	void setTipoCampeonato(string tc);
 
+    /** @brief * Sets competition's staff
+     * @param vs is a vector to the Convocatoria's staff
+*/
 	void setStaff(vector<Staff> vs);
 
 
@@ -160,6 +167,16 @@ public:
 * @param y is the competition's ending date
 */
 	void setEndingDate(Date y);
+
+    /** @brief * Sets competition's state
+* @param estado is the state of the championship
+*/
+    void setEstado(string estado);
+
+    /** @brief * Sets competition's Selecionador
+* @param s is a pointer to Selecionador Convocado
+*/
+    void setSelecionadorConvocado(Selecionador *s);
 
 
     /** @brief * Gets competition's type
@@ -206,7 +223,6 @@ public:
     /** @brief * Prints competition in a friendly way
 * @param cnv is a pointer to the competition
 */
-
 	friend ostream& operator<<(ostream& out, Convocatoria* cnv);
 };
 

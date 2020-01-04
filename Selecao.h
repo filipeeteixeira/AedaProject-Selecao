@@ -40,7 +40,6 @@ class Selecao {
     vector<Staff> TodosStaffs;
     vector<Jogador *> OutrosJogadores; //vetor com jogadores de equipas adversarias com que a sele�ao ja jogou
     vector<Jogo *> TodosJogos;
-    //vector<Staff*> EquipaTecnica;
     BST<Selecionador> TodosSelecionadores;
 
     vector<Staff> staff_atual;
@@ -248,9 +247,10 @@ public:
     vector<Staff> getAllStaff() const;
 
 
-
+/** @brief * Gets a pointer to the selecionar of this Convocatoria
+* @return  pointer to Selecionador
+*/
     Selecionador *getSelecionador(string nome) const;
-
 
 
     /** @brief * Buys a product from the highest ranked supplier
