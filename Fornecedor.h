@@ -59,7 +59,7 @@ public:
 };
 
 
-/** @brief * Fornecedor Constructor
+/** @brief * Operator overload
 *@param f1 is the first supplier
 * @param f2 is the second supplier
 *@return true is f1's rating is less than f2's rating, false otherwise
