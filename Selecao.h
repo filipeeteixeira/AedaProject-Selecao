@@ -248,14 +248,35 @@ public:
     Selecionador *getSelecionador(string nome) const;
 
 
+
+    /** @brief * Buys a product from the highest ranked supplier
+*@param fornecedores is the priority queue with the suppliers
+     * @param product is the product the user wants to buy
+*/
     void buyProduct(string product, priority_queue<Fornecedor> &fornecedores);
 
+
+    /** @brief * Shows all Supplier information
+*/
     void showAllFornecedores();
+
+    /** @brief * Adds a supplier to the queue
+*@param object supplier to be added
+*/
 
     void addFornecedor(Fornecedor f);
 
+    /** @brief * Removes a supplier from the queue
+*@param object supplier to be removed
+*/
+
     void removeFornecedor(string nome);
 
+
+    /** @brief * Sets a chosen supplier's rating
+*@param nome is the name of the supplier to change
+     * @param rating is the new rating
+*/
     void setFornecedorRating(string nome,int rating);
 
 

@@ -53,7 +53,13 @@ void AlterarStaffSubMenu(Selecao &s);
 void CustosSubMenu(Selecao &s);
 
 
+
+/** @brief * Starts the Supplier's menu
+*@param s is the national team to be analyzed
+*/
 void FornecedoresSubMenu(Selecao &s);
+
+
 
 void SelecionadoresSubMenu(Selecao &s);
 

@@ -47,8 +47,16 @@ string AskDateProcedure();
 *@return Position of the chosen competition
 */
 
+int getCampNum(vector<Convocatoria*> c);
+
+/** @brief * Returns the name of the product the user wants to buy
+*@return String with the product name
+*/
 string AskProductProcedure();
 
+
+/** @brief * Returns the supplier with a given name
+*@return Supplier with the given name
+*/
 Fornecedor AskFornecedorProcedure();
 
-int getCampNum(vector<Convocatoria*> c);
