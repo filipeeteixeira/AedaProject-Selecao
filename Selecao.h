@@ -46,13 +46,13 @@ class Selecao {
     vector<Staff> staff_antigo;
 
 public:
-    /** @brief * National Team empty constructor
-*/
+
 
 
     priority_queue<Fornecedor> fornecedores;
 
-
+    /** @brief * National Team empty constructor
+*/
     Selecao();
 
     /** @brief * lists which staff has a recent and an old contract filling the respective vectors
@@ -131,9 +131,18 @@ public:
  */
     void modifyStaff(Staff st);
 
+    /** @brief * Shows all the managers from least to most titles
+ */
+
     void showAllSelecionadoresC() const;
 
+    /** @brief * Shows all the managers from most to least titles
+*/
     void showAllSelecionadoresD() const;
+
+    /** @brief * Shows all the managers with more than n titles
+     * @param n is the number of titles
+*/
 
     void showAllSelecionadoresN(int n) const;
 
@@ -182,12 +191,25 @@ public:
 */
     void addLesaoConvocatoria(string id_conv, string id_player, string day);
 
+    /** @brief * Create a championship
+*/
     void MakeConvocatoria();
+
+    /** @brief * Returns the current staff
+     * @return vector with objects of the current staff
+*/
 
     vector<Staff> GetStaffAtual();
 
+    /** @brief * Returns the retired staff
+ * @return vector with objects of the retired staff
+*/
     vector<Staff> GetStaffAntigo();
 
+    /** @brief * Updates a championship's state
+ * @param id_conv is the championship id
+     * @param estado is the current state
+*/
     void atualizarEstadoConvocatoria(string estado, string id_conv);
 
     /** @brief * Gets a pointer to a player with the given number
